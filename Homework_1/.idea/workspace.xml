@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edbd53f5-8b68-4384-9c23-579444f45325" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/haomins/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/haomins/test/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/haomins/main/things/Thing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/haomins/main/things/Thing.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,13 +40,13 @@
       <file leaf-file-name="Thing.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/haomins/main/things/Thing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="2" selection-end-line="14" />
+            <state relative-caret-position="196">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#118#119#0" expanded="true" />
                 <element signature="e#150#151#0" expanded="true" />
-                <element signature="e#375#376#0" expanded="true" />
-                <element signature="e#402#403#0" expanded="true" />
+                <element signature="e#181#182#0" expanded="true" />
+                <element signature="e#208#209#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -456,13 +455,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/haomins/main/things/Thing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="2" selection-end-line="14" />
+        <state relative-caret-position="196">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#118#119#0" expanded="true" />
             <element signature="e#150#151#0" expanded="true" />
-            <element signature="e#375#376#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
+            <element signature="e#181#182#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -30,7 +30,7 @@ public abstract class Creature extends Thing implements CreatureContract {
     public abstract void move();
     // TODO --- might need to switch to abstract is needed
 
-    protected class Stomach {
+    private class Stomach {
 
         private Thing inStomach;
 

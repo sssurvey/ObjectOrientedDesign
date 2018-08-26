@@ -3,6 +3,7 @@ package com.haomins.test.unitTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.haomins.main.things.Thing;
+
 import org.junit.jupiter.api.Test;
 
 class ThingTest {

@@ -2,8 +2,8 @@ package com.haomins.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.haomins.main.Main;
-import org.junit.jupiter.api.Test;
+    import com.haomins.main.Main;
+    import org.junit.jupiter.api.Test;
 
 class MainTest {
 

@@ -18,7 +18,6 @@ class ThingTest {
 
     @Test
     void getThingName() {
-
         Thing thing = new Thing(thingName);
         assertEquals(thing.getName(), thingName);
     }

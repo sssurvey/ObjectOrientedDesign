@@ -1,6 +1,6 @@
 package com.haomins.main.things;
 
-public class Thing {
+public class Thing implements ThingContract {
 
     private final String name;
 
@@ -8,7 +8,8 @@ public class Thing {
         this.name = name;
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
 }

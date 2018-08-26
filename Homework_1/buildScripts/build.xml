@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="Homework 1" default="personal_testing">
+  <!-- Release 1 peasonal_testing -->
+  <target name="personal_testing">
+    <mkdir dir="personal_testing"/>
+    <javac srcdir="../src/com/haomins/main" destdir="personal_testing"/>
+  </target>
+  <!-- -->
+</project>

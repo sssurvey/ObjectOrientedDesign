@@ -1,6 +1,6 @@
 package com.haomins.main.things;
 
-public class Thing implements ThingContract {
+public class Thing {
 
     private final String name;
 

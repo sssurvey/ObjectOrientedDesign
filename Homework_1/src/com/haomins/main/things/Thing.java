@@ -10,6 +10,10 @@ public class Thing {
 
     @Override
     public String toString() {
-        return name;
+        if (this.getClass() == Thing.class) {
+            return this.name;
+        } else {
+            return this.getClass().getSimpleName() + " " + this.name;
+        }
     }
 }

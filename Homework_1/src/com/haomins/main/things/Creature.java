@@ -1,6 +1,6 @@
 package com.haomins.main.things;
 
-public abstract class Creature extends Thing implements CreatureContract {
+public abstract class Creature extends Thing {
 
     private Stomach stomach;
 
@@ -9,13 +9,11 @@ public abstract class Creature extends Thing implements CreatureContract {
         stomach = new Stomach();
     }
 
-    @Override
     public void eat(Thing thing) {
         System.out.println(super.toString() + " " + "has just eaten a" + " " + thing);
         this.stomach.addContent(thing);
     }
 
-    @Override
     public void whatDidYouEat() {
         if (stomach == null) {
             System.out.println(
@@ -30,7 +28,7 @@ public abstract class Creature extends Thing implements CreatureContract {
     public abstract void move();
     // TODO --- might need to switch to abstract is needed
 
-    protected class Stomach {
+    private class Stomach {
 
         private Thing inStomach;
 

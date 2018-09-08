@@ -1,1 +1,4 @@
-/Homework_1/.idea/workspace.xml
+# ignore
+./Homework_1/.idea/*
+# ignore mac stuff
+.DS_Store

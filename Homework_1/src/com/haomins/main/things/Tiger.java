@@ -8,7 +8,7 @@ public class Tiger extends Creature {
 
     @Override
     public void move() {
-        System.out.println(this.name + " " + this.getClass().getSimpleName() + " " + "has just pounced.");
+        System.out.println(this + "has just pounced.");
     }
 
 }

@@ -2,7 +2,7 @@ package com.haomins.main.things;
 
 public class Thing {
 
-    protected final String name;
+    private final String name;
 
     public Thing(String name) {
         this.name = name;
@@ -13,7 +13,7 @@ public class Thing {
         if (this.getClass() == Thing.class) {
             return this.name;
         } else {
-            return this.getClass().getSimpleName() + " " + this.name;
+            return this.name + " " + this.getClass().getSimpleName();
         }
     }
 }

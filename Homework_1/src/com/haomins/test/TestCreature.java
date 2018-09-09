@@ -39,6 +39,16 @@ public class TestCreature {
         System.out.println("\nCreatures:\n");
         for (Object o : arrayList) if (o.getClass().getSuperclass().equals(Creature.class)) System.out.println(o);
 
+        //TestEat
+        for (Object o : arrayList) {
+            if (o.getClass().getSuperclass().equals(Creature.class))
+                for (Object inner : arrayList) {
+                    if (inner instanceof Thing) ((Creature) o).eat((Thing) inner);
+                    else if (inner.getClass().getSuperclass().equals(Creature.class))
+                        ((Creature) o).eat((Creature) inner);
+                }
+        }
+
     }
 
     private static void testThingArray(int CONSTANTS) {

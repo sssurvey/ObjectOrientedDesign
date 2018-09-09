@@ -15,13 +15,13 @@ public abstract class Creature extends Thing {
     }
 
     public void whatDidYouEat() {
-        if (stomach == null) {
+        if (stomach.getInStomach() == null) {
             System.out.println(
-                this + this.getClass().getSimpleName() + " " + "has had nothing to eat!");
+                    this + " " + "has had nothing to eat!");
         } else {
             System.out.println(
-                this + this.getClass().getSimpleName() + " " + "has eaten a" + " "
-                    + stomach.getInStomach());
+                    this + " " + "has eaten a" + " "
+                            + stomach.getInStomach());
         }
     }
 

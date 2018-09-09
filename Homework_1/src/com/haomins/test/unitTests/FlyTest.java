@@ -5,8 +5,6 @@ import com.haomins.main.things.Thing;
 import com.haomins.main.things.flyer.Fly;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FlyTest {
 
     Fly fly = new Fly("FFFF");

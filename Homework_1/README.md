@@ -1,10 +1,11 @@
-#Overview
+# Overview
 
 This is an overview of the [__Homework 1__](https://github.com/sssurvey/ObjectOrientedDesign/tree/master/Homework_1).
 
 _Haomin Shi_ @ Sep 9th, 2018
 
-```bash
+```
+bash
 haominshi@MacBook-Pro-de-Haomin:~/GitRepo/ObjectOrientedDesign$ tree Homework_1/
 Homework_1/
 ├── Homework_1.iml

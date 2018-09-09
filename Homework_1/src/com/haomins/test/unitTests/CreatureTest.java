@@ -1,4 +1,4 @@
-package com.haomins.test;
+package com.haomins.test.unitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 

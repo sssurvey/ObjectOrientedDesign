@@ -1,4 +1,4 @@
-package com.haomins.test;
+package com.haomins.main;
 
 import com.haomins.main.things.Ant;
 import com.haomins.main.things.Creature;

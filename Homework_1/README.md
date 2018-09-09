@@ -9,6 +9,7 @@ bash
 haominshi@MacBook-Pro-de-Haomin:~/GitRepo/ObjectOrientedDesign$ tree Homework_1/
 Homework_1/
 ├── Homework_1.iml
+├── README.md
 ├── buildScripts
 │   ├── build.xml
 │   └── personal_testing
@@ -18,6 +19,8 @@ Homework_1/
 │                   ├── Main.class
 │                   └── things
 │                       └── Thing.class
+├── homework_1.properties
+├── homework_1.xml
 ├── lib
 │   ├── apiguardian-api-1.0.0.jar
 │   ├── junit-jupiter-api-5.0.0.jar
@@ -26,6 +29,7 @@ Homework_1/
     └── com
         └── haomins
             ├── main
+            │   ├── TestCreature.java
             │   └── things
             │       ├── Ant.java
             │       ├── Creature.java
@@ -36,7 +40,6 @@ Homework_1/
             │           ├── Fly.java
             │           └── Flyer.java
             └── test
-                ├── TestCreature.java
                 └── unitTests
                     ├── AntTest.java
                     ├── BatTest.java
@@ -45,7 +48,7 @@ Homework_1/
                     ├── ThingTest.java
                     └── TigerTest.java
 
-15 directories, 21 files
+15 directories, 24 files
 ```
 
 ### Stats

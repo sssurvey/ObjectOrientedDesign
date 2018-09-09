@@ -13,6 +13,7 @@ Homework_1/src/
 └── com
     └── haomins
         ├── main
+        │   ├── TestCreature.java
         │   └── things
         │       ├── Ant.java
         │       ├── Creature.java
@@ -23,7 +24,6 @@ Homework_1/src/
         │           ├── Fly.java
         │           └── Flyer.java
         └── test
-            ├── TestCreature.java
             └── unitTests
                 ├── AntTest.java
                 ├── BatTest.java

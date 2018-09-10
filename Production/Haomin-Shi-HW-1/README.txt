@@ -1,11 +1,15 @@
 How to compile all the src
 1. install >>> ant
-2. make sure you have java
-3. run on your terminal $ ant -buildfile homework_1.xml
+--
+2. sudo apt-get update
+3. sudo apt-get install ant
+--
+4. make sure you have java
+5. run on your terminal $ ant -buildfile homework_1.xml
 	- This will compile everything except the unitTests for you.
 
 LAST: To test TestCreature.java
-1. $ cd TA_grading
+1. $ cd ./TA_grading
 2. $ java com.haomins.main.TestCreature
 3. You will now see the output on the terminal
 

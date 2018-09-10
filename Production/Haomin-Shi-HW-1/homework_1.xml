@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="Homework 1" default="TA_grading">
+  <!-- Release 1 TA MAIN PROGRAM-->
+  <target name="TA_grading">
+    <mkdir dir="TA_grading"/>
+    <javac includeantruntime="false" srcdir="src/com/haomins/main" destdir="TA_grading"/>
+  </target>
+  
+  <!-- Release 1 TA UNIT TESTS compile-->
+  <target name="Test_compile" depends="TA_grading">
+    <mkdir dir="TA_grading"/>
+    <javac includeantruntime="false" srcdir="src/com/haomins/test" destdir="TA_grading">
+      <classpath>
+        <pathelement path="lib/junit-jupiter-api-5.0.0.jar"/>
+      </classpath>
+    </javac>
+  </target>
+</project>

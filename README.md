@@ -34,3 +34,7 @@ Homework_1/src/
 
 7 directories, 14 files
 ```
+---
+- [ ] Homework 2
+
+> http://www.cs.iit.edu/~virgil/cs445/mail.fall2018/hw2.html

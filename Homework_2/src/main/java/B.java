@@ -7,7 +7,7 @@ public class B {
     private String infoAboutClass;
     private String editable;    // I created this for other class to use
 
-    public B (){
+    public B() {
         this.infoAboutClass = "This is class B, hello, and stay Classy";
     }
 

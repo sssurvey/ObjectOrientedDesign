@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BTest {
-    
+
     @Test
     public void getInfoAboutClass() {
         B testable = new B();

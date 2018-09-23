@@ -26,4 +26,10 @@ public class DTest {
         D dValidator = new D();
         assertEquals(dValidator.getInfoAboutClass(), dTestable.getInfoAboutClass());
     }
+
+    @Test
+    public void instanceCounter() {
+        D dTestable = new D();
+        assertEquals(5, dTestable.instanceCounter());
+    }
 }

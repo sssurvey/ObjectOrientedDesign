@@ -2,6 +2,7 @@ public class A {
     // At this level, we care that:
     // A is dependent to B.java
     // Class C is subClass of A
+
     private B bDependent;
 
     private String infoAboutClass;

@@ -13,7 +13,7 @@ public class D extends B {
 
     @Override
     public void setEditable(String editable) {
-        System.out.println("Overrided  the function in class B");
+        System.out.println("Override the function in class B");
         super.setEditable(editable);
     }
 

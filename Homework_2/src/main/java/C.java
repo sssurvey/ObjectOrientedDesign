@@ -1,7 +1,7 @@
 public class C extends A {
     // At current level, we only care that ->
     // based on the UML diagram:
-    // Class C will be
+    // Class C will be inherit A
     // Class C will be depend on D
 
     private D dDependent;

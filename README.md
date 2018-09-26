@@ -35,6 +35,35 @@ Homework_1/src/
 7 directories, 14 files
 ```
 ---
-- [ ] Homework 2
+- [x] Homework 2
 
 > http://www.cs.iit.edu/~virgil/cs445/mail.fall2018/hw2.html
+
+__$ tree Homework_2/src/__
+```
+Homework_2/src/
+├── main
+│   ├── java
+│   │   ├── A.java
+│   │   ├── B.java
+│   │   ├── C.java
+│   │   ├── D.java
+│   │   ├── E.java
+│   │   ├── F.java
+│   │   ├── ImporvedStringTokenizer.java
+│   │   └── ImprovedRandom.java
+│   └── resources
+└── test
+    ├── java
+    │   ├── ATest.java
+    │   ├── BTest.java
+    │   ├── CTest.java
+    │   ├── DTest.java
+    │   ├── ETest.java
+    │   ├── FTest.java
+    │   ├── ImporvedStringTokenizerTest.java
+    │   └── ImprovedRandomTest.java
+    └── resources
+
+6 directories, 16 files
+```

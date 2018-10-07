@@ -16,7 +16,7 @@ public class LightbulbTest {
     @Test
     public void changeStatus() {
         Lightbulb lb = new Lightbulb();
-        lb.ChangeStatus();
+        lb.ChangeStatus(Status.ON);
         assertEquals(Status.ON, lb.getStatus());
     }
 }

@@ -4,21 +4,23 @@ import tableLamp.enumsUtil.Status;
 
 public class Lightbulb {
 
-    private tableLamp.enumsUtil.Status Status;
+    private Status status;
 
     public Lightbulb() {
-        Status = Status.OFF;
+        status = Status.OFF;
     }
 
     public Status getStatus() {
-        return Status;
+        return status;
     }
 
-    public void ChangeStatus() {
-        if (Status.equals(Status.OFF)) {
-            Status = Status.ON;
-        } else {
-            Status = Status.OFF;
+    public void ChangeStatus(Status status) {
+        switch (status) {
+            case ON:
+                this.status = Status.ON;
+                break;
+            case OFF:
+                this.status = Status.OFF;
         }
     }
 }

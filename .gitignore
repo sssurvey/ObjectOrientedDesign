@@ -1,5 +1,6 @@
 # ignore
-./Homework_1/.idea/*
-./Homework_2/.idea/*
+./Homework_1/.idea/
+./Homework_2/.idea/
+./Homework_2/.idea/
 # ignore mac stuff
 .DS_Store

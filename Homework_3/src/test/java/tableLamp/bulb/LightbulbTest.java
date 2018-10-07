@@ -1,6 +1,7 @@
 package tableLamp.bulb;
 
 import org.junit.Test;
+import tableLamp.enumsUtil.Status;
 
 import static org.junit.Assert.*;
 
@@ -9,13 +10,13 @@ public class LightbulbTest {
     @Test
     public void getStatus() {
         Lightbulb lb = new Lightbulb();
-        assertEquals(Lightbulb.LightStatus.OFF, lb.getStatus());
+        assertEquals(Status.OFF, lb.getStatus());
     }
 
     @Test
     public void changeStatus() {
         Lightbulb lb = new Lightbulb();
         lb.ChangeStatus();
-        assertEquals(Lightbulb.LightStatus.ON, lb.getStatus());
+        assertEquals(Status.ON, lb.getStatus());
     }
 }

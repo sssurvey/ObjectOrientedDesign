@@ -1,12 +1,15 @@
 package tableLamp.control;
 
+import tableLamp.bulb.Lightbulb;
 import tableLamp.enumsUtil.Status;
 
 public class Button {
 
     private Status status;
+    private Lightbulb lb;
 
-    public Button() {
+    public Button(Lightbulb lb) {
+        this.lb = lb;
         status = Status.OFF;
     }
 
@@ -18,9 +21,11 @@ public class Button {
         switch (this.getStatus()) {
             case OFF:
                 status = Status.ON;
+                this.lb.ChangeStatus(Status.ON);
                 break;
-            default:
+            case ON:
                 status = Status.OFF;
+                this.lb.ChangeStatus(Status.OFF);
         }
     }
 }

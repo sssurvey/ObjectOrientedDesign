@@ -69,6 +69,6 @@ Homework_2/src/
 ```
 
 ---
-- [] Homework 3
+- [x] Homework 3
 
 > http://cs.iit.edu/~virgil/cs445/mail.fall2018/hw3.html

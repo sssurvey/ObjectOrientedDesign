@@ -1,26 +1,24 @@
 package tableLamp.bulb;
 
+import tableLamp.enumsUtil.Status;
+
 public class Lightbulb {
 
-    public enum LightStatus {
-        ON, OFF
-    }
-
-    private LightStatus Status;
+    private tableLamp.enumsUtil.Status Status;
 
     public Lightbulb() {
-        Status = LightStatus.OFF;
+        Status = Status.OFF;
     }
 
-    public LightStatus getStatus() {
+    public Status getStatus() {
         return Status;
     }
 
     public void ChangeStatus() {
-        if (Status.equals(LightStatus.OFF)) {
-            Status = LightStatus.ON;
+        if (Status.equals(Status.OFF)) {
+            Status = Status.ON;
         } else {
-            Status = LightStatus.OFF;
+            Status = Status.OFF;
         }
     }
 }

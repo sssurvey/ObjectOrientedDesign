@@ -2,7 +2,7 @@ package tableLamp.bulb;
 
 import tableLamp.enumsUtil.Status;
 
-public class Lightbulb {
+public class Lightbulb implements LightbulbContract {
 
     private Status status;
 
@@ -10,10 +10,12 @@ public class Lightbulb {
         status = Status.OFF;
     }
 
+    @Override
     public Status getStatus() {
         return status;
     }
 
+    @Override
     public void ChangeStatus(Status status) {
         switch (status) {
             case ON:

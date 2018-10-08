@@ -15,9 +15,9 @@ public class ButtonTest {
     }
 
     @Test
-    public void flipTheSwitch() {
+    public void pushButton() {
         Button button = new Button(new Lightbulb());
-        button.flipTheSwitch();
+        button.pushButton();
         assertEquals(Status.ON, button.getStatus());
     }
 }

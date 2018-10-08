@@ -9,11 +9,11 @@ public class Main {
         Button buttonToLightbulb1 = new Button(lightbulb1);
 
         //turn bulb
-        buttonToLightbulb1.flipTheSwitch(); //switch to ON
+        buttonToLightbulb1.pushButton(); //switch to ON
         System.out.println("lightbulb1's current Status ---> " + lightbulb1.getStatus());
         System.out.println("button1's current Status ---> " + buttonToLightbulb1.getStatus());
 
-        buttonToLightbulb1.flipTheSwitch(); //switch to OFF
+        buttonToLightbulb1.pushButton(); //switch to OFF
         System.out.println("lightbulb1's current Status ---> " + lightbulb1.getStatus());
         System.out.println("button1's current Status ---> " + buttonToLightbulb1.getStatus());
     }

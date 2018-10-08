@@ -22,7 +22,7 @@ public class Button {
         return status;
     }
 
-    public void flipTheSwitch() { // courtesy of BoostMobile USA "Are you ready to Flip The Switch?"
+    public void pushButton() {
         switch (this.getStatus()) {
             case OFF:
                 status = Status.ON;

@@ -73,8 +73,9 @@ Homework_2/src/
 
 > http://cs.iit.edu/~virgil/cs445/mail.fall2018/hw3.html
 
+__$ tree Homework_3/src/__
+
 ```bash
-$ tree Homework_3/src/
 Homework_3/src/
 ├── main
 │   ├── java

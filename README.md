@@ -69,6 +69,34 @@ Homework_2/src/
 ```
 
 ---
-- [ ] Homework 3
+- [x] Homework 3
 
 > http://cs.iit.edu/~virgil/cs445/mail.fall2018/hw3.html
+
+```bash
+$ tree Homework_3/src/
+Homework_3/src/
+├── main
+│   ├── java
+│   │   ├── Main.java
+│   │   └── tableLamp
+│   │       ├── bulb
+│   │       │   ├── Lightbulb.java
+│   │       │   └── LightbulbContract.java
+│   │       ├── control
+│   │       │   └── Button.java
+│   │       └── enumsUtil
+│   │           └── Status.java
+│   └── resources
+└── test
+    ├── java
+    │   └── tableLamp
+    │       ├── bulb
+    │       │   └── LightbulbTest.java
+    │       └── control
+    │           └── ButtonTest.java
+    └── resources
+
+13 directories, 7 files
+```
+

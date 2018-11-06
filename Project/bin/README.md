@@ -10,9 +10,3 @@ For this project:
 		2. Java 8 for the standard OOP style, and my familiarity
 		3. VSC for the light weight, and less IDE magics
 		4. SpringBoot for the light weight, and Tomcat inclution
-
-- To run the program:
-	- ```$ ./gradlew build```
-	- ```$ ./gradlew run```
-	- The app will be running at ```localhost:8080```
-	- To get hello world use ```localhost:8080/hello-world```

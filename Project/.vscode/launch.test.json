@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "Project",
+                "projectName": "Project",
+                "workingDirectory": "/Users/haominshi/GitRepo/ObjectOrientedDesign/Project",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "Project",
+                "projectName": "Project",
+                "workingDirectory": "/Users/haominshi/GitRepo/ObjectOrientedDesign/Project",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

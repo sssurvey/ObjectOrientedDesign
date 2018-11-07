@@ -17,10 +17,6 @@ public class ParkModel {
 		this.pid = pid;
 	}
 
-	public ParkModel create() {
-		return new ParkModel();
-	}
-
 	/**
 	 * @param locationInfoModel the locationInfoModel to set
 	 */

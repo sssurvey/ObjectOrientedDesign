@@ -61,5 +61,4 @@ class LocationInfoModel {
 	public void setGeo(int[] geo) {
 		this.geo = geo;
 	}
-
 }

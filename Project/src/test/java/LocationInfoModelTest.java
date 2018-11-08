@@ -1,6 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
-import model.LocationInfoModel;;
+import model.parkModel.*;
 
 public class LocationInfoModelTest {
     @Test

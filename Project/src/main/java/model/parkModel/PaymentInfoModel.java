@@ -1,4 +1,6 @@
-package model;
+package model.parkModel;
+
+import model.vehicleModel.*;
 
 public class PaymentInfoModel {
 
@@ -7,8 +9,11 @@ public class PaymentInfoModel {
 
     public PaymentInfoModel(VehicleTypeInfoModel vehicleTypefInfoModel, int[] plate) {
         this.vechicleTypeInfoModel = vehicleTypefInfoModel;
-        this.licensePlate[0] = plate[0];
-        this.licensePlate[1] = plate[1];
+
+        // TODO: This should be dynamically chaged based on the licience plate of the
+        // vechiles
+        this.licensePlate[0] = plate[0]; // parking price for the in state viechle price
+        this.licensePlate[1] = plate[1]; // price for the out of state vehicles
     }
 
     /**

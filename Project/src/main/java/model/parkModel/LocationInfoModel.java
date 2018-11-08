@@ -1,4 +1,4 @@
-package model;
+package model.parkModel;
 
 public class LocationInfoModel {
 
@@ -83,7 +83,7 @@ public class LocationInfoModel {
 	public String getAddress() {
 		return address;
 	}
-	
+
 	/**
 	 * @return the phone
 	 */

@@ -1,4 +1,4 @@
-package model;
+package model.vehicleModel;
 
 public enum VehicleTypeInfoModel {
 

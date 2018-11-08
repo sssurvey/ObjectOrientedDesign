@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
-import model.PaymentInfoModel;
-import model.VehicleTypeInfoModel;
+import model.parkModel.*;
+import model.vehicleModel.*;
 
 public class PaymentInfoModelTest {
 

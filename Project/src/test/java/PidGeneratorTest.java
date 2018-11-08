@@ -4,12 +4,12 @@ import util.*;
 
 public class PidGeneratorTest {
 
-    private static final double MIN_PID = 0d;
-    private static final double MAX_PID = 99999999d;
+    private static final long MIN_PID = 0l;
+    private static final long MAX_PID = 9999999999l;
 
     @Test
-    public void testPaymentInfoModelCreation() {
-        double testDouble = PidGenerator.generate();
-        assertTrue(testDouble >= MIN_PID && testDouble <= MAX_PID);
+    public void generateTest() {
+        long testLong = PidGenerator.generate();
+        assertTrue(testLong >= MIN_PID && testLong <= MAX_PID);
     }
 }

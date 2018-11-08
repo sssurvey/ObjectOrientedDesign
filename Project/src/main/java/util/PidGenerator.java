@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PidGenerator {
-    // TODO: This class should be a singleton class, and should be called only in
-    // the BL of the park, this class should have nothing to do with the models
+    // should be called only in the BL of the park, this class should have nothing
+    // to do with the models
 
-    private static final double MIN_PID = 0d;
-    private static final double MAX_PID = 99999999d;
+    private static final long MIN_PID = 0l;
+    private static final long MAX_PID = 9999999999l;
     // TODO: maybe externalize it to a text file
-    private static List<Double> generatedDoubleList = new ArrayList<>();
+    private static List<Long> generatedPidList = new ArrayList<>();
 
     private PidGenerator() {
     }
 
-    public static double generate() {
-        Double pid = ThreadLocalRandom.current().nextDouble(MIN_PID, MAX_PID + 1);
-        while (generatedDoubleList.contains(pid)){
+    public static long generate() {
+        long pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
+        while (generatedPidList.contains(pid)) {
             // TODO: need better implementation...
-            pid = ThreadLocalRandom.current().nextDouble(MIN_PID, MAX_PID + 1);
+            pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
         }
         return pid; // permitive.
     }

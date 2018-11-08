@@ -25,6 +25,10 @@ public class ParkModelTest {
 		assertEquals("address", parkModel.getLocationInfoModel().getAddress());
 		assertEquals("phone", parkModel.getLocationInfoModel().getPhone());
 		assertEquals("web", parkModel.getLocationInfoModel().getWeb());
+		
+		// Check if Pid assigned
+		String parkModePid = parkModel.getPid();
+		assertNotNull(parkModePid);
 
 		// Test Geo
 		float[] geoResult = parkModel.getLocationInfoModel().getGeo();

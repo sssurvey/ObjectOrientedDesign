@@ -1,5 +1,7 @@
 package model.parkModel;
 
+import util.*;
+
 public class ParkModel {
 
 	// a special string for park as a ref
@@ -9,6 +11,7 @@ public class ParkModel {
 	private String pid;
 
 	public ParkModel() {
+		this.pid = NumberFormatter.formatToTenDigitString(PidGenerator.generate());
 	}
 
 	/**

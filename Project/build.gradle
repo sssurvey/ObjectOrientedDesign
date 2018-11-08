@@ -42,7 +42,16 @@ dependencies {
 bootJar {
     baseName = 'gs-spring-boot'
     version =  '0.1.0'
-    mainClassName = ''
+    mainClassName = 'App'
+}
+
+test {
+    testLogging.showStandardStreams = true
+    // added test logging for gradle to see unit test results
+    // $ gradle clean test
+    afterTest { desc, result -> 
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
 }
 
 // In this section you declare where to find the dependencies of your project

@@ -8,9 +8,9 @@ public class LocationInfoModel {
 	private String phone;
 	private String web;
 	// Geo lat and lng, [lat, lng]
-	private int[] geo = new int[2];
+	private float[] geo = new float[2];
 
-	public LocationInfoModel(String name, String region, String address, String phone, String web, int[] geo) {
+	public LocationInfoModel(String name, String region, String address, String phone, String web, float[] geo) {
 		this.name = name;
 		this.region = region;
 		this.address = address;
@@ -20,6 +20,7 @@ public class LocationInfoModel {
 		this.geo = geo.clone();
 	}
 
+	// TODO add getter method when needed
 	/**
 	 * @param name the name to set
 	 */
@@ -58,7 +59,7 @@ public class LocationInfoModel {
 	/**
 	 * @param geo the geo to set
 	 */
-	public void setGeo(int[] geo) {
+	public void setGeo(float[] geo) {
 		this.geo = geo;
 	}
 }

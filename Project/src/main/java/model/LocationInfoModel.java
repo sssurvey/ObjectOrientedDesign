@@ -1,6 +1,6 @@
 package model;
 
-class LocationInfoModel {
+public class LocationInfoModel {
 
 	private String name;
 	private String region;

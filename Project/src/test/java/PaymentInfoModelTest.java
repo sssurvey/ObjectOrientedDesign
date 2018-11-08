@@ -1,6 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 import model.PaymentInfoModel;
+import model.VehicleTypeInfoModel;
 
 public class PaymentInfoModelTest {
 
@@ -8,7 +9,7 @@ public class PaymentInfoModelTest {
 
     @Test
     public void testPaymentInfoModelCreation() {
-        PaymentInfoModel paymentInfoModel = new PaymentInfoModel("Motocycle", testPlate);
+        PaymentInfoModel paymentInfoModel = new PaymentInfoModel(VehicleTypeInfoModel.MOTOCYCLE, testPlate);
         assertNotNull(paymentInfoModel);
     }
 }

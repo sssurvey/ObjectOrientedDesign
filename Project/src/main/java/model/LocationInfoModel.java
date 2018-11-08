@@ -62,4 +62,46 @@ public class LocationInfoModel {
 	public void setGeo(float[] geo) {
 		this.geo = geo;
 	}
+
+	/**
+	 * @return the geo
+	 */
+	public float[] getGeo() {
+		return geo;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+	
+	/**
+	 * @return the phone
+	 */
+	public String getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @return the region
+	 */
+	public String getRegion() {
+		return region;
+	}
+
+	/**
+	 * @return the web
+	 */
+	public String getWeb() {
+		return web;
+	}
 }

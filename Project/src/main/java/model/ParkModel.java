@@ -3,8 +3,9 @@ package model;
 public class ParkModel {
 
 	// a special string for park as a ref
-	// TODO Payment INFO
+	// TODO Need a PID generator, maybe not in this class
 	private LocationInfoModel locationInfoModel;
+	private PaymentInfoModel paymentInfoModel;
 	private String pid;
 
 	public ParkModel() {
@@ -25,6 +26,13 @@ public class ParkModel {
 	}
 
 	/**
+	 * @param paymentInfoModel the paymentInfoModel to set
+	 */
+	public void setPaymentInfoModel(PaymentInfoModel paymentInfoModel) {
+		this.paymentInfoModel = paymentInfoModel;
+	}
+
+	/**
 	 * @return the pid
 	 */
 	public String getPid() {
@@ -36,5 +44,12 @@ public class ParkModel {
 	 */
 	public LocationInfoModel getLocationInfoModel() {
 		return locationInfoModel;
+	}
+
+	/**
+	 * @return the paymentInfoModel
+	 */
+	public PaymentInfoModel getPaymentInfoModel() {
+		return paymentInfoModel;
 	}
 }

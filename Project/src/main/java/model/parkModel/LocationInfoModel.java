@@ -16,8 +16,8 @@ public class LocationInfoModel {
 		this.address = address;
 		this.phone = phone;
 		this.web = web;
-		// TODO .clone() might not be needed
-		this.geo = geo.clone();
+		// TODO .clone() might be needed
+		this.geo = geo;
 	}
 
 	// TODO add getter method when needed
@@ -30,7 +30,7 @@ public class LocationInfoModel {
 
 	/**
 	 * @param region the region to set
-	 */
+
 	public void setRegion(String region) {
 		this.region = region;
 	}

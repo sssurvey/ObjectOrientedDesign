@@ -4,23 +4,22 @@ import model.vehicleModel.*;
 
 public class PaymentInfoModel {
 
-    private int[] licensePlate = new int[2];
+    private int[] platePrices = new int[2];
     private VehicleTypeInfoModel vechicleTypeInfoModel;
 
-    public PaymentInfoModel(VehicleTypeInfoModel vehicleTypefInfoModel, int[] plate) {
-        this.vechicleTypeInfoModel = vehicleTypefInfoModel;
+    public PaymentInfoModel(VehicleTypeInfoModel vehicleTypeInfoModel, int[] plate) {
+        this.vechicleTypeInfoModel = vehicleTypeInfoModel;
 
         // TODO: This should be dynamically chaged based on the licience plate of the
         // vechiles
-        this.licensePlate[0] = plate[0]; // parking price for the in state viechle price
-        this.licensePlate[1] = plate[1]; // price for the out of state vehicles
+        this.platePrices = plate;
     }
 
     /**
      * @return the licensePlate
      */
-    public int[] getLicensePlate() {
-        return licensePlate;
+    public int[] getPlatePrices() {
+        return platePrices;
     }
 
     /**
@@ -28,5 +27,12 @@ public class PaymentInfoModel {
      */
     public VehicleTypeInfoModel getVechicleTypeInfoModel() {
         return vechicleTypeInfoModel;
+    }
+
+    /**
+     * @param platePrices the platePrices to set
+     */
+    public void setPlatePrices(int[] platePrices) {
+        this.platePrices = platePrices;
     }
 }

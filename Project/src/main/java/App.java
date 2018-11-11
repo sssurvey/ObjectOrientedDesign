@@ -19,7 +19,7 @@ public class App {
     }
 
     // Create Park
-    @RequestMapping(value = "/parkpay/parks", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/parks", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public String createPark(
         @RequestBody String park
     ) throws Exception{

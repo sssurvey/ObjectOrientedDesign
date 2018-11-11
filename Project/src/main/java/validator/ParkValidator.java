@@ -38,10 +38,10 @@ public class ParkValidator {
 
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			JsonObject locationInfoJSON = jsonObject.getAsJsonObject("location_info");
-
 			JsonObject geoJSON = locationInfoJSON.getAsJsonObject("geo");
 
 			float[] geo = { geoJSON.get("lat").getAsFloat(), geoJSON.get("lng").getAsFloat() };
+
 			park.setLocationInfoModel(new LocationInfoModel(locationInfoJSON.get("name").getAsString(),
 					locationInfoJSON.get("region").getAsString(), locationInfoJSON.get("address").getAsString(),
 					locationInfoJSON.get("phone").getAsString(), locationInfoJSON.get("web").getAsString(), geo));

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PidGenerator {
+public class IdGenerator {
     // should be called only in the BL of the park, this class should have nothing
     // to do with the models
 
@@ -13,10 +13,10 @@ public class PidGenerator {
     // TODO: maybe externalize it to a text file
     private static List<Long> generatedPidList = new ArrayList<>();
 
-    private PidGenerator() {
+    private IdGenerator() {
     }
 
-    public static long generate() {
+    public static long generatePid() {
         long pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
         while (generatedPidList.contains(pid)) {
             // TODO: need better implementation...

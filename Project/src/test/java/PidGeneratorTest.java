@@ -9,7 +9,7 @@ public class PidGeneratorTest {
 
     @Test
     public void generateTest() {
-        long testLong = PidGenerator.generate();
+        long testLong = IdGenerator.generatePid();
         assertTrue(testLong >= MIN_PID && testLong <= MAX_PID);
     }
 }

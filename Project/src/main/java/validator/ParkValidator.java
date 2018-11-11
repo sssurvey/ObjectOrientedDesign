@@ -11,7 +11,10 @@ import com.google.gson.reflect.TypeToken;
 
 import model.parkModel.LocationInfoModel;
 import model.parkModel.PaymentInfoModel;
+
 import park.Park;
+
+import util.*;
 
 public class ParkValidator {
 	public String parkValidation(String parkJSON) {
@@ -56,16 +59,12 @@ public class ParkValidator {
 			List<Integer> rvPrices = new Gson().fromJson(rvPriceJSON, listType);
 			List<Integer> motorcyclePrices = new Gson().fromJson(motorcyclePriceJSON, listType);
 
-			paymentInfoModel.addPrices("car", toIntArray(carPrices));
-			paymentInfoModel.addPrices("rv", toIntArray(rvPrices));
-			paymentInfoModel.addPrices("motorcycle", toIntArray(motorcyclePrices));
+			paymentInfoModel.addPrices("car", ArrayFormatter.toIntArray(carPrices));
+			paymentInfoModel.addPrices("rv", ArrayFormatter.toIntArray(rvPrices));
+			paymentInfoModel.addPrices("motorcycle", ArrayFormatter.toIntArray(motorcyclePrices));
 
 			park.setPaymentInfoModel(paymentInfoModel);
 		}
 		return park;
-	}
-
-	private int[] toIntArray(List<Integer> intList) {
-		return intList.stream().mapToInt(Integer::intValue).toArray();
 	}
 }

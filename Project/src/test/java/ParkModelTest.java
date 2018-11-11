@@ -17,7 +17,7 @@ public class ParkModelTest {
 		float[] testGeo = { 33.3f, 44, 5f };
 		int[] testPlate = { 3, 5 };
 		parkModel.setLocationInfoModel(new LocationInfoModel("name", "region", "address", "phone", "web", testGeo));
-		parkModel.setPaymentInfoModel(new PaymentInfoModel(VehicleTypeInfoModel.MOTOCYCLE, testPlate));
+		parkModel.setPaymentInfoModel(new PaymentInfoModel());
 
 		// Test getString values, like name, region, addr, phone, and web
 		assertEquals("name", parkModel.getLocationInfoModel().getName());

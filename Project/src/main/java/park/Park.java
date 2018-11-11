@@ -65,4 +65,8 @@ public class Park {
         return this.parkModel.getPid();
     }
 
+    public void setPid(String pid) {
+        this.parkModel.setPid(pid);
+    }
+
 }

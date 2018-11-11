@@ -11,7 +11,7 @@ public class ParkModel {
 	private String pid;
 
 	public ParkModel() {
-		this.pid = NumberFormatter.formatToTenDigitString(PidGenerator.generate());
+		this.pid = NumberFormatter.formatToTenDigitStringPid(IdGenerator.generatePid());
 	}
 
 	/**

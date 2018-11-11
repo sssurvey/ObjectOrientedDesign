@@ -1,8 +1,13 @@
 package util;
 
 public class NumberFormatter {
-    public static String formatToTenDigitString(long number) {
+
+    private static final String PID_PREFIX = "P";
+
+    public static String formatToTenDigitStringPid(long number) {
         String numberAsString = String.format("%010d", number);
-        return numberAsString;
+        StringBuilder stringBuilder = new StringBuilder(PID_PREFIX);
+        stringBuilder.append(numberAsString);
+        return stringBuilder.toString();
     }
 }

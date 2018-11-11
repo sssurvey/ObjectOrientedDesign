@@ -1,26 +1,24 @@
 package model.parkModel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import model.vehicleModel.*;
 
 public class PaymentInfoModel {
 
-    private int[] licensePlate = new int[2];
     private VehicleTypeInfoModel vechicleTypeInfoModel;
 
-    public PaymentInfoModel(VehicleTypeInfoModel vehicleTypefInfoModel, int[] plate) {
-        this.vechicleTypeInfoModel = vehicleTypefInfoModel;
+    private Map<String, int[]> pricesMap = new HashMap<>();
 
-        // TODO: This should be dynamically chaged based on the licience plate of the
-        // vechiles
-        this.licensePlate[0] = plate[0]; // parking price for the in state viechle price
-        this.licensePlate[1] = plate[1]; // price for the out of state vehicles
+    public PaymentInfoModel() {
     }
 
     /**
-     * @return the licensePlate
+     * @return the licensePlate int[]
      */
-    public int[] getLicensePlate() {
-        return licensePlate;
+    public int[] getPlatePrices(String carType) {
+        return pricesMap.get(carType);
     }
 
     /**
@@ -28,5 +26,9 @@ public class PaymentInfoModel {
      */
     public VehicleTypeInfoModel getVechicleTypeInfoModel() {
         return vechicleTypeInfoModel;
+    }
+
+    public void addPrices(String carType, int[] platePrices) {
+        pricesMap.put(carType, platePrices);
     }
 }

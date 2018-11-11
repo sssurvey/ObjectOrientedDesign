@@ -9,7 +9,7 @@ public class PaymentInfoModelTest {
 
     @Test
     public void testPaymentInfoModelCreation() {
-        PaymentInfoModel paymentInfoModel = new PaymentInfoModel(VehicleTypeInfoModel.MOTOCYCLE, testPlate);
+        PaymentInfoModel paymentInfoModel = new PaymentInfoModel();
         assertNotNull(paymentInfoModel);
     }
 }

@@ -17,12 +17,9 @@ import park.Park;
 import util.*;
 
 public class ParkValidator {
-	public String parkValidation(String parkJSON) {
-		Gson gson = new Gson();
+	public Park parkValidation(String parkJSON) {
 		Park park = jsonParser(parkJSON);
-		JsonObject successfulReturn = new JsonObject();
-		successfulReturn.addProperty("pid", park.getPid());
-		return gson.toJson(successfulReturn);
+		return park;
 	}
 
 	// TODO: very ugly, need change, and need to save parks using containers

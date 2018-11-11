@@ -3,7 +3,6 @@ package park;
 import model.parkModel.LocationInfoModel;
 import model.parkModel.ParkModel;
 import model.parkModel.PaymentInfoModel;
-import model.vehicleModel.VehicleTypeInfoModel;
 
 public class Park {
 
@@ -12,12 +11,16 @@ public class Park {
 
     private ParkModel parkModel;
 
-    public Park(String name, String region, String address, String phone, String web, float[] geo,
-            VehicleTypeInfoModel vehicleTypeInfoModel, int[] plate) {
+    public Park(String name, String region, String address, String phone, String web, float[] geo) {
         this.parkModel = new ParkModel();
         this.parkModel.setLocationInfoModel(new LocationInfoModel(name, region, address, phone, web, geo));
-        this.parkModel.setPaymentInfoModel(new PaymentInfoModel(vehicleTypeInfoModel, plate));
+        this.parkModel.setPaymentInfoModel(new PaymentInfoModel());
 
+    }
+
+    // need to set the locationInfo and PaymentInfo later on
+    public Park(){
+        this.parkModel = new ParkModel();
     }
 
     /**

@@ -35,6 +35,9 @@ dependencies {
     // add the spring framework
     compile "org.springframework.boot:spring-boot-starter-web"
 
+    // add the GSON lib
+    compile "com.google.code.gson:gson:2.8.5"
+
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }

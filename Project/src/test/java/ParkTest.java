@@ -18,8 +18,7 @@ public class ParkTest {
 
     @Test
     public void parkIntegretyTest() {
-        Park park = new Park(testName, testRegion, testAddress, testPhone, testWeb, testGeo, VehicleTypeInfoModel.CAR,
-                testPlate);
+        Park park = new Park(testName, testRegion, testAddress, testPhone, testWeb, testGeo);
 
         assertNotNull(park);
 
@@ -33,10 +32,9 @@ public class ParkTest {
         float[] testGeoActual = park.getLocationInfoModel().getGeo();
         assertEquals(testGeo, testGeoActual);
 
+        park.getPaymentInfoModel().addPrices("car", testPlate);
         // Paymentinto Park test
-        assertEquals(VehicleTypeInfoModel.CAR, park.getPaymentInfoModel().getVechicleTypeInfoModel());
-
-        int[] testPlateActual = park.getPaymentInfoModel().getPlatePrices();
-        assertEquals(testPlate, testPlateActual);
+        int[] testPlateActual = park.getPaymentInfoModel().getPlatePrices("car");
+        assertEquals(3, testPlateActual[0]);
     }
 }

@@ -25,8 +25,13 @@ public class Storage implements StorageContract {
         for (Park tempPark : StorageEntity.ALL_PARKS) {
             if (pid.equals(tempPark.getPid())) {
                 StorageEntity.removePark(StorageEntity.ALL_PARKS.indexOf(tempPark));
-                return; //no more loop after this
+                return; // no more loop after this
             }
         }
+    }
+
+    @Override
+    public int getTotalParkCount() {
+        return StorageEntity.getTotalParkCount();
     }
 }

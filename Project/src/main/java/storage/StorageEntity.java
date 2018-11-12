@@ -20,4 +20,8 @@ public class StorageEntity {
     public static void removePark(int index) {
         ALL_PARKS.remove(index);
     }
+
+    public static int getTotalParkCount() {
+        return ALL_PARKS.size();
+    }
 }

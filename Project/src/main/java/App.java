@@ -37,6 +37,7 @@ public class App {
         Park validatedPark = validator.parkValidation(parkJSON); // maybe add a exception
         storagehelper.savePark(validatedPark);
         successfulReturn.addProperty("pid", validatedPark.getPid());
+        //System.out.println("POST - > " + storagehelper.getTotalParkCount());
         return gson.toJson(successfulReturn);
     }
 
@@ -52,6 +53,7 @@ public class App {
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE)
     public void deletePark(@PathVariable(value = "PID") String pid) {
         storagehelper.deletePark(pid);
+        //System.out.println("DELETE - > " + storagehelper.getTotalParkCount());
     }
 
     public static void main(String[] args) {

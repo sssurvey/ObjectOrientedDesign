@@ -34,4 +34,9 @@ public class Storage implements StorageContract {
     public int getTotalParkCount() {
         return StorageEntity.getTotalParkCount();
     }
+
+    @Override
+    public Park getParkAtIndex(int index) {
+        return StorageEntity.getParkAtIndex(index);
+    }
 }

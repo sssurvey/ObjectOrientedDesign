@@ -1,4 +1,5 @@
 package park;
-public class ParkContract{
-	
+
+public interface ParkContract {
+
 }

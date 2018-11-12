@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import validator.ParkValidator;
+import jsonUtil.*;
 
 public class ParkValidatorTest {
 

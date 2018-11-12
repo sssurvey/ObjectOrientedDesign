@@ -1,4 +1,4 @@
-import validator.*;
+import jsonUtil.*;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import park.Park;
 import storage.Storage;
+import storage.StorageEntity;
 
 // the main controller for the program
 @RestController
@@ -37,7 +38,7 @@ public class App {
         Park validatedPark = validator.parkValidation(parkJSON); // maybe add a exception
         storagehelper.savePark(validatedPark);
         successfulReturn.addProperty("pid", validatedPark.getPid());
-        //System.out.println("POST - > " + storagehelper.getTotalParkCount());
+        // System.out.println("POST - > " + storagehelper.getTotalParkCount());
         return gson.toJson(successfulReturn);
     }
 
@@ -53,7 +54,14 @@ public class App {
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE)
     public void deletePark(@PathVariable(value = "PID") String pid) {
         storagehelper.deletePark(pid);
-        //System.out.println("DELETE - > " + storagehelper.getTotalParkCount());
+        // System.out.println("DELETE - > " + storagehelper.getTotalParkCount());
+    }
+
+    // Get All park /parkpay/parks GET -- return list of all parks, with location
+    // info
+    @RequestMapping(value = "/parks", method = RequestMethod.GET)
+    public String getAllParks() {
+        return ParkToJsonConvertor.allParkToJsonLoactionInfoAndPidToJson();
     }
 
     public static void main(String[] args) {

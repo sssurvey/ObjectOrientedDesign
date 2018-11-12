@@ -24,4 +24,8 @@ public class StorageEntity {
     public static int getTotalParkCount() {
         return ALL_PARKS.size();
     }
+
+    public static Park getParkAtIndex(int index) {
+        return ALL_PARKS.get(index);
+    }
 }

@@ -10,4 +10,6 @@ public interface StorageContract {
     public void deletePark(String pid);
 
     public int getTotalParkCount();
+
+    public Park getParkAtIndex(int index);
 }

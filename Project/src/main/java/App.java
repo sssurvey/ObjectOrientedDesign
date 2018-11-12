@@ -48,6 +48,12 @@ public class App {
         storagehelper.updatePark(validatedPark, pid);
     }
 
+    // Delete Park /parkpay/021312 DELETE - void
+    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE)
+    public void deletePark(@PathVariable(value = "PID") String pid) {
+        storagehelper.deletePark(pid);
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

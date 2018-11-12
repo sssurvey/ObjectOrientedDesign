@@ -16,4 +16,8 @@ public class StorageEntity {
     public static void replaceEntryAtIndex(int index, Park park) {
         ALL_PARKS.set(index, park);
     }
+
+    public static void removePark(int index) {
+        ALL_PARKS.remove(index);
+    }
 }

@@ -1,4 +1,4 @@
-package validator;
+package jsonUtil;
 
 import java.lang.reflect.Type;
 import java.util.List;

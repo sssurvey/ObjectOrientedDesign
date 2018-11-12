@@ -69,4 +69,5 @@ public class Park {
         this.parkModel.setPid(pid);
     }
 
+    // TODO need toJSON methods to covert this to a json string formatt
 }

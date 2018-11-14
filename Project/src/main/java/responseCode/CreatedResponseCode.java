@@ -20,7 +20,7 @@ public class CreatedResponseCode implements ResponseCodeContract {
         this.instance = "";
     }
 
-    public CreatedResponseCode(String type, String title, HttpServletRequest request, String detail) {
+    public CreatedResponseCode(String type, String title, String detail, HttpServletRequest request) {
         this.type = type;
         this.title = title;
         this.detail = detail;

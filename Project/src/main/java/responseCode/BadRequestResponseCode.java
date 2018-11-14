@@ -21,7 +21,7 @@ public class BadRequestResponseCode implements ResponseCodeContract {
         this.instance = "";
     }
 
-    public BadRequestResponseCode(String type, String title, HttpServletRequest request, String detail) {
+    public BadRequestResponseCode(String type, String title , String detail, HttpServletRequest request) {
         this.type = type;
         this.title = title;
         this.detail = detail;

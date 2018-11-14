@@ -20,7 +20,7 @@ public class NotFoundResponseCode implements ResponseCodeContract {
         this.instance = "";
     }
 
-    public NotFoundResponseCode(String type, String title, HttpServletRequest request, String detail) {
+    public NotFoundResponseCode(String type, String title, String detail, HttpServletRequest request) {
         this.type = type;
         this.title = title;
         this.detail = detail;

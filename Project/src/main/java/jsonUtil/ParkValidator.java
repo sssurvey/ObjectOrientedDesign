@@ -17,13 +17,13 @@ import park.Park;
 import util.*;
 
 public class ParkValidator {
-	public Park parkValidation(String parkJSON) {
+	public Park parkValidation(String parkJSON) throws Exception {
 		Park park = jsonParser(parkJSON);
 		return park;
 	}
 
 	// TODO: very ugly, need change, and need to save parks using containers
-	private Park jsonParser(String parkJSON) {
+	private Park jsonParser(String parkJSON) throws Exception {
 
 		Park park = new Park();
 		PaymentInfoModel paymentInfoModel = new PaymentInfoModel();

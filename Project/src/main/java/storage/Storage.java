@@ -40,4 +40,14 @@ public class Storage implements StorageContract {
     public Park getParkAtIndex(int index) {
         return StorageEntity.getParkAtIndex(index);
     }
+
+    @Override
+    public Park getParkByPid(String pid) {
+        for (Park tempPark : StorageEntity.ALL_PARKS){
+            if (pid.equals(tempPark.getPid())){
+                return tempPark;
+            }
+        }
+        return null;
+    }
 }

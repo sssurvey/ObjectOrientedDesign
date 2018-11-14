@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import park.Park;
+import responseCode.NotFoundResponseCode;
 import storage.Storage;
 
 // the main controller for the program
@@ -51,8 +54,12 @@ public class App {
 
     // Delete Park /parkpay/021312 DELETE - void
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE)
-    public void deletePark(@PathVariable(value = "PID") String pid) {
-        storagehelper.deletePark(pid);
+    public ResponseEntity deletePark(@PathVariable(value = "PID") String pid) {
+        if (storagehelper.deletePark(pid)){
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ResponseJsonParser.toJson(new NotFoundResponseCode()));
+        }
         // System.out.println("DELETE - > " + storagehelper.getTotalParkCount());
     }
 

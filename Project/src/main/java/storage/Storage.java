@@ -21,13 +21,14 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public void deletePark(String pid) {
+    public boolean deletePark(String pid) {
         for (Park tempPark : StorageEntity.ALL_PARKS) {
             if (pid.equals(tempPark.getPid())) {
                 StorageEntity.removePark(StorageEntity.ALL_PARKS.indexOf(tempPark));
-                return; // no more loop after this
+                return true; // no more loop after this
             }
         }
+        return false;
     }
 
     @Override

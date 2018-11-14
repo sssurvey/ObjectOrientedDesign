@@ -12,4 +12,6 @@ public interface StorageContract {
     public int getTotalParkCount();
 
     public Park getParkAtIndex(int index);
+
+    public Park getParkByPid(String pid);
 }

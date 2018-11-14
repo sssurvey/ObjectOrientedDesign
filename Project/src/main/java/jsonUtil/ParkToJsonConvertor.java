@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import model.parkModel.LocationInfoModel;
+import park.Park;
 
 public class ParkToJsonConvertor {
 
@@ -17,6 +18,11 @@ public class ParkToJsonConvertor {
                     storagehelper.getParkAtIndex(i).getLocationInfoModel()));
         }
         return parkListToJsonLocationInfo(allParkList);
+    }
+
+    public static String parkToJsonModel(Park park) {
+        Gson gson = new Gson();
+        return gson.toJson(park);
     }
 
     private static String parkListToJsonLocationInfo(List<OutputJsonModelLocationAndPid> parksList) {

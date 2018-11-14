@@ -3,11 +3,13 @@ package storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.noteModel.NoteModel;
 import park.Park;
 
 public class StorageEntity {
     // This is a fake Table in DB
     public static final List<Park> ALL_PARKS = new ArrayList<>();
+    public static final List<NoteModel> ALL_NOTES = new ArrayList<>();
 
     public static void addEntry(Park park) {
         ALL_PARKS.add(park);
@@ -27,5 +29,21 @@ public class StorageEntity {
 
     public static Park getParkAtIndex(int index) {
         return ALL_PARKS.get(index);
+    }
+
+    public static void addEntry(NoteModel noteModel) {
+        ALL_NOTES.add(noteModel);
+    }
+
+    public static void removeNoteModel(int index) {
+        ALL_NOTES.remove(index);
+    }
+
+    public static int getTotalNoteModelCount() {
+        return ALL_NOTES.size();
+    }
+
+    public static NoteModel getNoteModelAtIndex(int index) {
+        return ALL_NOTES.get(index);
     }
 }

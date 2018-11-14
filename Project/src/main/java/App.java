@@ -19,7 +19,7 @@ import park.Park;
 import responseCode.NotFoundResponseCode;
 import storage.Storage;
 
-// the main controller for the program
+// the main controller for the program /parkpay base
 @RestController
 @EnableAutoConfiguration
 public class App {
@@ -53,7 +53,7 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(successfulReturn));
     }
 
-    // Update Park /parkpay/021312 PUT JSON
+    // Update Park /parks/{PID} PUT JSON
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updatePark(@PathVariable(value = "PID") String pid, @RequestBody String parkJSON,
             HttpServletRequest request) {
@@ -71,7 +71,7 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    // Delete Park /parkpay/021312 DELETE - void
+    // Delete Park /parks/{PID}} DELETE - void
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE, produces = { "application/json" })
     public ResponseEntity<String> deletePark(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         if (storagehelper.deletePark(pid)) {
@@ -84,15 +84,15 @@ public class App {
         }
     }
 
-    // Get All park /parkpay/parks GET -- return list of all parks, with location
+    // Get All park /parks GET -- return list of all parks, with location
     // info
     @RequestMapping(value = "/parks", method = RequestMethod.GET, produces = { "application/json" })
     public ResponseEntity<String> getAllParks() {
         return ResponseEntity.status(HttpStatus.OK).body(ParkToJsonConvertor.allParkToJsonLoactionInfoAndPidToJson());
     }
 
-    // Get park detail /parkpay/park/{pid} GET -- return everything about the park
-    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.GET, produces = {"application/json"})
+    // Get park detail /park/{pid} GET -- return everything about the park
+    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.GET, produces = { "application/json" })
     public ResponseEntity<String> getParkDetail(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         Park park = storagehelper.getParkByPid(pid);
         if (park != null) {

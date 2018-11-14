@@ -1,5 +1,6 @@
 import jsonUtil.*;
 import model.noteModel.NoteEntry;
+import model.noteModel.NoteModel;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -110,17 +111,23 @@ public class App {
     // TODO Search parks /parks?key=south GET -- returns array of json of parks that
     // has this key word
 
-    // TODO note
     // POST /parks/[pid]/notes -- create note associate with the park
     @RequestMapping(value = "/parks/{PID}/notes", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createNoteAssociateToPark(@PathVariable(value = "PID") String pid,
             @RequestBody String noteJSON, HttpServletRequest request) {
-        gson = new Gson();
-        JsonObject successfulReturn = new JsonObject();
         NoteValidator validator = new NoteValidator();
         try {
             NoteEntry validatedNote = validator.noteValidation(noteJSON);
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+            if (storagehelper.updateNoteModel(validatedNote, pid)) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(NoteToJsonConvertor.NoteToJsonNidResponse(validatedNote));
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                                "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
+                                "Your request data didn't pass validation", "Something is missing in your request",
+                                request)));
+            }
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode(

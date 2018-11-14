@@ -14,8 +14,17 @@ public class NoteModel {
         this.pid = park.getPid();
     }
 
-    public void addNote(String title, String text, String vid) {
+    public NoteModel(String pid, NoteEntry noteEntry) {
+        this.pid = pid;
+        noteList.add(noteEntry);
+    }
+
+    public void addNewNote(String title, String text, String vid) {
         noteList.add(new NoteEntry(title, text, vid));
+    }
+
+    public void addNote(NoteEntry noteEntry) {
+        noteList.add(noteEntry);
     }
 
     /**

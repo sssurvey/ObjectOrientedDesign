@@ -1,5 +1,7 @@
 import jsonUtil.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import park.Park;
 import responseCode.NotFoundResponseCode;
@@ -53,19 +57,20 @@ public class App {
     }
 
     // Delete Park /parkpay/021312 DELETE - void
-    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE)
-    public ResponseEntity deletePark(@PathVariable(value = "PID") String pid) {
-        if (storagehelper.deletePark(pid)){
+    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE, produces = { "application/json" })
+    public ResponseEntity<String> deletePark(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
+        if (storagehelper.deletePark(pid)) {
             return ResponseEntity.status(HttpStatus.OK).body(null);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ResponseJsonParser.toJson(new NotFoundResponseCode()));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND", request,
+                            "The Park that related to this PID is not found, thus no delete action has been done")));
         }
-        // System.out.println("DELETE - > " + storagehelper.getTotalParkCount());
     }
 
     // Get All park /parkpay/parks GET -- return list of all parks, with location
     // info
-    @RequestMapping(value = "/parks", method = RequestMethod.GET)
+    @RequestMapping(value = "/parks", method = RequestMethod.GET, produces = { "application/json" })
     public String getAllParks() {
         return ParkToJsonConvertor.allParkToJsonLoactionInfoAndPidToJson();
     }

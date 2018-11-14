@@ -7,7 +7,7 @@ public interface StorageContract {
 
     public void updatePark(Park park, String pid);
 
-    public void deletePark(String pid);
+    public boolean deletePark(String pid);
 
     public int getTotalParkCount();
 

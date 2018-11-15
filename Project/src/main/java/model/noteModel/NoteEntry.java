@@ -40,4 +40,18 @@ public class NoteEntry {
     public String getTitle() {
         return title;
     }
+    
+    /**
+     * @return the vid
+     */
+    public String getVid() {
+        return vid;
+    }
+
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
 }

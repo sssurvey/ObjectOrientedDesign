@@ -77,7 +77,8 @@ public class Storage implements StorageContract {
         if (pidList.contains(pid)) { // check if the park linked to the list is created
             for (NoteModel tempNote : StorageEntity.ALL_NOTES) {
                 if (pid.equals(tempNote.getPid())) {
-                    tempNote.addNote(noteEntry);
+                    tempNote.getNoteList().add(noteEntry);
+                    return true;
                 }
             }
             StorageEntity.addEntry(new NoteModel(pid, noteEntry));
@@ -85,6 +86,34 @@ public class Storage implements StorageContract {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public NoteModel getNoteModelByPid(String pid) {
+        for (NoteModel tempNoteModel : StorageEntity.ALL_NOTES) {
+            if (pid.equals(tempNoteModel.getPid())) {
+                return tempNoteModel;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public NoteEntry getNoteByPidAndNid(String pid, String nid) {
+        NoteModel noteModel = getNoteModelByPid(pid);
+        if (noteModel != null) {
+            for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
+                if (nid.equals(tempNoteEntry.getNid()))
+                    return tempNoteEntry;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<NoteModel> getAllNoteModel() {
+        List<NoteModel> allNoteList = new ArrayList<>(StorageEntity.ALL_NOTES);
+        return allNoteList;
     }
 
     private List<String> updateAllPids() {

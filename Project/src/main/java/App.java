@@ -120,7 +120,7 @@ public class App {
             NoteEntry validatedNote = validator.noteValidation(noteJSON);
             if (storagehelper.updateNoteModel(validatedNote, pid)) {
                 return ResponseEntity.status(HttpStatus.OK)
-                        .body(NoteToJsonConvertor.NoteToJsonNidResponse(validatedNote));
+                        .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
@@ -135,6 +135,42 @@ public class App {
                             "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
         }
+    }
+
+    // GET /parks/[pid]/notes View all notes associated with park
+    @RequestMapping(value = "/parks/{PID}/notes", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllNoteAssociteToPark(@PathVariable(value = "PID") String pid,
+            HttpServletRequest request) {
+        NoteModel matchedModel = storagehelper.getNoteModelByPid(pid);
+        if (matchedModel != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(NoteToJsonConvertor.noteModelToJson(matchedModel));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                            "The Park that related to this PID is not found, thus no delete action has been done",
+                            request)));
+        }
+    }
+
+    // GET http://localhost:8080/parkpay/parks/124/notes/583
+    @RequestMapping(value = "/parks/{PID}/notes/{NID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getNoteEntryViaNidAndPid(@PathVariable(value = "PID") String pid,
+            @PathVariable(value = "NID") String nid, HttpServletRequest request) {
+        NoteEntry matchedEntry = storagehelper.getNoteByPidAndNid(pid, nid);
+        if (matchedEntry != null)
+            // TODO very bad way to response
+            return ResponseEntity.status(HttpStatus.OK).body(NoteToJsonConvertor.noteEntryToJson(matchedEntry, pid));
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                            "The Park that related to this PID is not found, thus no delete action has been done",
+                            request)));
+    }
+
+    @RequestMapping(value = "/notes", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllNotes() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(NoteToJsonConvertor.allNoteToJson(storagehelper.getAllNoteModel()));
     }
 
     public static void main(String[] args) {

@@ -167,6 +167,12 @@ public class App {
                             request)));
     }
 
+    @RequestMapping(value = "/notes", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllNotes() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(NoteToJsonConvertor.allNoteToJson(storagehelper.getAllNoteModel()));
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

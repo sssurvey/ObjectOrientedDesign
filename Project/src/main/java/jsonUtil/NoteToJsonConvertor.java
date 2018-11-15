@@ -1,5 +1,7 @@
 package jsonUtil;
 
+import java.util.List;
+
 import com.google.gson.Gson;
 
 import model.noteModel.NoteEntry;
@@ -20,6 +22,11 @@ public class NoteToJsonConvertor {
     public static String noteEntryToJson(NoteEntry noteEntry, String pid) {
         Gson gson = new Gson();
         return gson.toJson(new NoteEntryPidNidReturnModel(noteEntry, pid));
+    }
+
+    public static String allNoteToJson(List<NoteModel> list) {
+        Gson gson = new Gson();
+        return gson.toJson(list);
     }
 
     private static class NoteEntryNidReturnModel {

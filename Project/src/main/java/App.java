@@ -1,4 +1,6 @@
 import jsonUtil.*;
+import model.noteModel.NoteEntry;
+import model.noteModel.NoteModel;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,14 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import park.Park;
 import responseCode.NotFoundResponseCode;
 import storage.Storage;
+import storage.StorageContract;
 
-// the main controller for the program
+// the main controller for the program /parkpay base
 @RestController
 @EnableAutoConfiguration
 public class App {
 
     private Gson gson;
-    private Storage storagehelper = new Storage();
+    private StorageContract storagehelper = new Storage();
 
     // Hello World
     @RequestMapping(value = "/hello-world", method = RequestMethod.GET)
@@ -53,7 +56,7 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(successfulReturn));
     }
 
-    // Update Park /parkpay/021312 PUT JSON
+    // Update Park /parks/{PID} PUT JSON
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updatePark(@PathVariable(value = "PID") String pid, @RequestBody String parkJSON,
             HttpServletRequest request) {
@@ -71,7 +74,7 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    // Delete Park /parkpay/021312 DELETE - void
+    // Delete Park /parks/{PID}} DELETE - void
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.DELETE, produces = { "application/json" })
     public ResponseEntity<String> deletePark(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         if (storagehelper.deletePark(pid)) {
@@ -84,15 +87,15 @@ public class App {
         }
     }
 
-    // Get All park /parkpay/parks GET -- return list of all parks, with location
+    // Get All park /parks GET -- return list of all parks, with location
     // info
     @RequestMapping(value = "/parks", method = RequestMethod.GET, produces = { "application/json" })
     public ResponseEntity<String> getAllParks() {
         return ResponseEntity.status(HttpStatus.OK).body(ParkToJsonConvertor.allParkToJsonLoactionInfoAndPidToJson());
     }
 
-    // Get park detail /parkpay/park/{pid} GET -- return everything about the park
-    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.GET, produces = {"application/json"})
+    // Get park detail /park/{pid} GET -- return everything about the park
+    @RequestMapping(value = "/parks/{PID}", method = RequestMethod.GET, produces = { "application/json" })
     public ResponseEntity<String> getParkDetail(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         Park park = storagehelper.getParkByPid(pid);
         if (park != null) {
@@ -101,6 +104,35 @@ public class App {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
                             "The Park that related to this PID is not found, thus no delete action has been done",
+                            request)));
+        }
+    }
+
+    // TODO Search parks /parks?key=south GET -- returns array of json of parks that
+    // has this key word
+
+    // POST /parks/[pid]/notes -- create note associate with the park
+    @RequestMapping(value = "/parks/{PID}/notes", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> createNoteAssociateToPark(@PathVariable(value = "PID") String pid,
+            @RequestBody String noteJSON, HttpServletRequest request) {
+        NoteValidator validator = new NoteValidator();
+        try {
+            NoteEntry validatedNote = validator.noteValidation(noteJSON);
+            if (storagehelper.updateNoteModel(validatedNote, pid)) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(NoteToJsonConvertor.NoteToJsonNidResponse(validatedNote));
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                                "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
+                                "Your request data didn't pass validation", "Something is missing in your request",
+                                request)));
+            }
+        } catch (Exception didNotPassValidationException) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                            "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
+                            "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
         }
     }

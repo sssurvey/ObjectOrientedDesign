@@ -1,5 +1,10 @@
 package storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import model.noteModel.NoteEntry;
+import model.noteModel.NoteModel;
 import park.Park;
 
 public class Storage implements StorageContract {
@@ -43,11 +48,50 @@ public class Storage implements StorageContract {
 
     @Override
     public Park getParkByPid(String pid) {
-        for (Park tempPark : StorageEntity.ALL_PARKS){
-            if (pid.equals(tempPark.getPid())){
+        for (Park tempPark : StorageEntity.ALL_PARKS) {
+            if (pid.equals(tempPark.getPid())) {
                 return tempPark;
             }
         }
         return null;
+    }
+
+    @Override
+    public void saveNoteModel(NoteModel noteModel) {
+        StorageEntity.addEntry(noteModel);
+    }
+
+    @Override
+    public boolean isNoteModelCreated(String pid) {
+        for (NoteModel tempNote : StorageEntity.ALL_NOTES) {
+            if (pid.equals(tempNote.getPid())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateNoteModel(NoteEntry noteEntry, String pid) {
+        List<String> pidList = updateAllPids();
+        if (pidList.contains(pid)) { // check if the park linked to the list is created
+            for (NoteModel tempNote : StorageEntity.ALL_NOTES) {
+                if (pid.equals(tempNote.getPid())) {
+                    tempNote.addNote(noteEntry);
+                }
+            }
+            StorageEntity.addEntry(new NoteModel(pid, noteEntry));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private List<String> updateAllPids() {
+        List<String> pidList = new ArrayList<>();
+        for (Park temPark : StorageEntity.ALL_PARKS) {
+            pidList.add(temPark.getPid());
+        }
+        return pidList;
     }
 }

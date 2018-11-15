@@ -1,8 +1,11 @@
 package storage;
 
+import model.noteModel.NoteEntry;
+import model.noteModel.NoteModel;
 import park.Park;
 
 public interface StorageContract {
+
     public void savePark(Park park);
 
     public void updatePark(Park park, String pid);
@@ -14,4 +17,10 @@ public interface StorageContract {
     public Park getParkAtIndex(int index);
 
     public Park getParkByPid(String pid);
+
+    public void saveNoteModel(NoteModel noteModel);
+
+    public boolean isNoteModelCreated(String pid);
+
+    public boolean updateNoteModel(NoteEntry noteEntry, String pid);
 }

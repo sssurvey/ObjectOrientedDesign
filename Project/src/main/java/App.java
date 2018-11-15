@@ -1,6 +1,5 @@
 import jsonUtil.*;
 import model.noteModel.NoteEntry;
-import model.noteModel.NoteModel;
 
 import javax.servlet.http.HttpServletRequest;
 

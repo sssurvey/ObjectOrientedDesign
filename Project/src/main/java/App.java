@@ -152,6 +152,21 @@ public class App {
         }
     }
 
+    // GET http://localhost:8080/parkpay/parks/124/notes/583
+    @RequestMapping(value = "/parks/{PID}/notes/{NID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getNoteEntryViaNidAndPid(@PathVariable(value = "PID") String pid,
+            @PathVariable(value = "NID") String nid, HttpServletRequest request) {
+        NoteEntry matchedEntry = storagehelper.getNoteByPidAndNid(pid, nid);
+        if (matchedEntry != null)
+            // TODO very bad way to response
+            return ResponseEntity.status(HttpStatus.OK).body(NoteToJsonConvertor.noteEntryToJson(matchedEntry, pid));
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                            "The Park that related to this PID is not found, thus no delete action has been done",
+                            request)));
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

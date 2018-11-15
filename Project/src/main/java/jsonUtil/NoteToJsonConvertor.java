@@ -1,7 +1,5 @@
 package jsonUtil;
 
-import java.util.List;
-
 import com.google.gson.Gson;
 
 import model.noteModel.NoteEntry;
@@ -19,11 +17,34 @@ public class NoteToJsonConvertor {
         return gson.toJson(noteModel.getNoteList());
     }
 
+    public static String noteEntryToJson(NoteEntry noteEntry, String pid) {
+        Gson gson = new Gson();
+        return gson.toJson(new NoteEntryPidNidReturnModel(noteEntry, pid));
+    }
+
     private static class NoteEntryNidReturnModel {
         private String nid;
 
         private NoteEntryNidReturnModel(NoteEntry noteEntry) {
             this.nid = noteEntry.getNid();
+        }
+    }
+
+    private static class NoteEntryPidNidReturnModel {
+        private String pid;
+        private String nid;
+        private String vid;
+        private String date;
+        private String title;
+        private String text;
+
+        private NoteEntryPidNidReturnModel(NoteEntry noteEntry, String pid) {
+            this.pid = pid;
+            this.nid = noteEntry.getNid();
+            this.vid = noteEntry.getVid();
+            this.date = noteEntry.getDate();
+            this.title = noteEntry.getTitle();
+            this.text = noteEntry.getText();
         }
     }
 }

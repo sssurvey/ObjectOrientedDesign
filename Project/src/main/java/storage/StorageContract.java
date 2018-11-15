@@ -1,5 +1,7 @@
 package storage;
 
+import java.util.List;
+
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import park.Park;
@@ -27,4 +29,6 @@ public interface StorageContract {
     public NoteModel getNoteModelByPid(String pid);
 
     public NoteEntry getNoteByPidAndNid(String pid, String nid);
+
+    public List<NoteModel> getAllNoteModel();
 }

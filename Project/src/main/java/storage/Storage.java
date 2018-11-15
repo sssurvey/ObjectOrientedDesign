@@ -87,6 +87,16 @@ public class Storage implements StorageContract {
         }
     }
 
+    @Override
+    public NoteModel getNoteModelByPid(String pid){
+        for (NoteModel tempNoteModel : StorageEntity.ALL_NOTES){
+            if (pid.equals(tempNoteModel.getPid())){
+                return tempNoteModel;
+            }
+        }
+        return null;
+    }
+
     private List<String> updateAllPids() {
         List<String> pidList = new ArrayList<>();
         for (Park temPark : StorageEntity.ALL_PARKS) {

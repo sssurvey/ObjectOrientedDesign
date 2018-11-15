@@ -23,4 +23,6 @@ public interface StorageContract {
     public boolean isNoteModelCreated(String pid);
 
     public boolean updateNoteModel(NoteEntry noteEntry, String pid);
+
+    public NoteModel getNoteModelByPid(String pid);
 }

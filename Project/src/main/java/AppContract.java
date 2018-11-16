@@ -4,7 +4,7 @@ public interface AppContract {
 
 	public String updatePark(String pid, String parkJSON) throws Exception;
 
-	public String deletePark(String pid);
+	public void deletePark(String pid) throws Exception;
 
 	public String getAllParks();
 

@@ -24,8 +24,9 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String deletePark(String pid) {
-		return null;
+	public void deletePark(String pid) throws Exception {
+		if (storageContract.deletePark(pid)) return;
+		throw new Exception("PID not found");
 	}
 
 	@Override

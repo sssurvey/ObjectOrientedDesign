@@ -16,7 +16,15 @@ public class NoteEntry {
         this.title = title;
         this.text = text;
         this.vid = vid;
-        this.nid = NumberFormatter.formatToSixDigitStringNid(IdGenerator.generateNid());
+        this.nid = NumberFormatter.formatToFourDigitStringNid(IdGenerator.generateNid());
+        this.date = DateHelper.addDateStamp();
+    }
+
+    public NoteEntry(String title, String text, String vid, long nid) {
+        this.title = title;
+        this.text = text;
+        this.vid = vid;
+        this.nid = NumberFormatter.formatToFourDigitStringNid(nid);
         this.date = DateHelper.addDateStamp();
     }
 

@@ -167,6 +167,7 @@ public class App {
                             request)));
     }
 
+    // GET /notes Get an array of summary information for all notes.
     @RequestMapping(value = "/notes", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getAllNotes() {
         return ResponseEntity.status(HttpStatus.OK)

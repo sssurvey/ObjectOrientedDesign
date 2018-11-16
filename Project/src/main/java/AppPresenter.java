@@ -3,7 +3,7 @@ import park.Park;
 import storage.Storage;
 import storage.StorageContract;
 
-public class AppPresenter implements AppContract{
+public class AppPresenter implements AppContract {
 
 	private StorageContract storageContract = new Storage();
 	private ParkValidator parkValidator = new ParkValidator();
@@ -16,8 +16,11 @@ public class AppPresenter implements AppContract{
 	}
 
 	@Override
-	public String updatePark(String pid, String parkJSON) {
-		return null;
+	public String updatePark(String pid, String parkJSON) throws Exception {
+		Park park = parkValidator.parkValidation(parkJSON);
+		if (storageContract.updatePark(park, pid))
+			return park.getPid();
+		throw new Exception("PID of provided is not yet created");
 	}
 
 	@Override
@@ -64,5 +67,5 @@ public class AppPresenter implements AppContract{
 	public String updateNoteByPid(String nid, String noteJSON) {
 		return null;
 	}
-    
+
 }

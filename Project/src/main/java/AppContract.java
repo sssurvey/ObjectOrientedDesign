@@ -1,10 +1,8 @@
-import park.Park;
-
 public interface AppContract {
 
 	public String createPark(String parkJSON) throws Exception;
 
-	public String updatePark(String pid, String parkJSON);
+	public String updatePark(String pid, String parkJSON) throws Exception;
 
 	public String deletePark(String pid);
 

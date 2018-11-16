@@ -60,11 +60,8 @@ public class App {
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updatePark(@PathVariable(value = "PID") String pid, @RequestBody String parkJSON,
             HttpServletRequest request) {
-        ParkValidator validator = new ParkValidator();
-        Park validatedPark;
         try {
-            validatedPark = validator.parkValidation(parkJSON);
-            storagehelper.updatePark(validatedPark, pid);
+            presenter.updatePark(pid, parkJSON);
         } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",

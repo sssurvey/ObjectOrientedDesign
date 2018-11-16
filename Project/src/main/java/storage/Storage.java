@@ -18,12 +18,14 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public void updatePark(Park park, String pid) {
+    public boolean updatePark(Park park, String pid) {
         for (Park tempPark : StorageEntity.ALL_PARKS) {
             if (pid.equals(tempPark.getPid())) {
                 StorageEntity.replaceEntryAtIndex(StorageEntity.ALL_PARKS.indexOf(tempPark), park);
+                return true;
             }
         }
+        return false;
     }
 
     @Override

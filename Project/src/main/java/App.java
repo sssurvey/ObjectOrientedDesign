@@ -163,8 +163,7 @@ public class App {
         else
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
-                            "The Park that related to this PID is not found, thus no delete action has been done",
-                            request)));
+                            "The Park that related to this PID is not found", request)));
     }
 
     // GET /notes Get an array of summary information for all notes.
@@ -172,6 +171,17 @@ public class App {
     public ResponseEntity<String> getAllNotes() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(NoteToJsonConvertor.allNoteToJson(storagehelper.getAllNoteModel()));
+    }
+
+    // GET /notes/[nid] Get note [nid].
+    @RequestMapping(value = "/notes/{NID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getNoteByNid(@PathVariable(value = "NID") String nid, HttpServletRequest request) {
+        if (storagehelper.getNoteByNid(nid) != null)
+            return ResponseEntity.status(HttpStatus.OK).body(storagehelper.getNoteByNid(nid));
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
+                            "The note that related to this NID is not found", request)));
     }
 
     public static void main(String[] args) {

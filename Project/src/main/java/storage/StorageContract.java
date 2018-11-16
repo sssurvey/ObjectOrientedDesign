@@ -26,6 +26,8 @@ public interface StorageContract {
 
     public boolean updateNoteModel(NoteEntry noteEntry, String pid);
 
+    public boolean updateNoteByNid(NoteEntry noteEntry);
+
     public NoteModel getNoteModelByPid(String pid);
 
     public NoteEntry getNoteByPidAndNid(String pid, String nid);

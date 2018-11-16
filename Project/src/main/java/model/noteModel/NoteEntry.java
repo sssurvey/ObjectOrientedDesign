@@ -20,6 +20,14 @@ public class NoteEntry {
         this.date = DateHelper.addDateStamp();
     }
 
+    public NoteEntry(String title, String text, String vid, int nid) {
+        this.title = title;
+        this.text = text;
+        this.vid = vid;
+        this.nid = NumberFormatter.formatToSixDigitStringNid(nid);
+        this.date = DateHelper.addDateStamp();
+    }
+
     /**
      * @return the date
      */

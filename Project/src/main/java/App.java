@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import park.Park;
+import responseCode.BadRequestResponseCode;
 import responseCode.NotFoundResponseCode;
 import storage.Storage;
 import storage.StorageContract;
@@ -122,15 +123,14 @@ public class App {
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
-                                "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
-                                "Your request data didn't pass validation", "Something is missing in your request",
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                                "The Park that related to this PID is not found, thus no delete action has been done",
                                 request)));
             }
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                    .body(ResponseJsonParser.toJson(new BadRequestResponseCode(
                             "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
                             "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
@@ -182,6 +182,30 @@ public class App {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
                             "The note that related to this NID is not found", request)));
+    }
+
+    // Put /notes/[nid] update that note
+    @RequestMapping(value = "/notes/{NID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> updateNoteByPid(@PathVariable(value = "NID") String nid, @RequestBody String noteJSON,
+            HttpServletRequest request) {
+        NoteValidator validator = new NoteValidator();
+        try {
+            NoteEntry validatedNote = validator.noteValidation(noteJSON, Integer.parseInt(nid));
+            if (storagehelper.updateNoteByNid(validatedNote)) {
+                return ResponseEntity.status(HttpStatus.CREATED) // Created makes more sense
+                        .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                                "The Park that related to this PID is not found", request)));
+            }
+        } catch (Exception didNotPassValidationException) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ResponseJsonParser.toJson(new BadRequestResponseCode(
+                            "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
+                            "Your request data didn't pass validation", "Something is missing in your request",
+                            request)));
+        }
     }
 
     public static void main(String[] args) {

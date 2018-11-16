@@ -12,6 +12,11 @@ public class NoteValidator {
         return noteEntry;
     }
 
+    public NoteEntry noteValidation(String noteJSON, int pid) throws Exception {
+        NoteEntry noteEntry = jsonParser(noteJSON, pid);
+        return noteEntry;
+    }
+
     private NoteEntry jsonParser(String noteJSON) throws Exception {
 
         NoteEntry noteEntry = null;
@@ -23,6 +28,21 @@ public class NoteValidator {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             noteEntry = new NoteEntry(jsonObject.get("title").getAsString(), jsonObject.get("text").getAsString(),
                     jsonObject.get("vid").getAsString());
+        }
+        return noteEntry;
+    }
+
+    private NoteEntry jsonParser(String noteJSON, int pid) throws Exception {
+
+        NoteEntry noteEntry = null;
+
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(noteJSON);
+
+        if (jsonElement.isJsonObject()) {
+            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            noteEntry = new NoteEntry(jsonObject.get("title").getAsString(), jsonObject.get("text").getAsString(),
+                    jsonObject.get("vid").getAsString(), pid);
         }
         return noteEntry;
     }

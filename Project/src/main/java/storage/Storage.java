@@ -3,6 +3,7 @@ package storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import jsonUtil.NoteToJsonConvertor;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import park.Park;
@@ -106,6 +107,18 @@ public class Storage implements StorageContract {
                 if (nid.equals(tempNoteEntry.getNid()))
                     return tempNoteEntry;
             }
+        }
+        return null;
+    }
+
+    // TODO,!!! very bad implementation, no consistancy...
+    @Override
+    public String getNoteByNid(String nid) {
+        NoteEntry noteEntry = null;
+        for (int i = 0; i < StorageEntity.getTotalParkCount(); i++) {
+            noteEntry = getNoteByPidAndNid(StorageEntity.getParkAtIndex(i).getPid(), nid);
+            if (noteEntry != null)
+                return NoteToJsonConvertor.noteEntryToJson(noteEntry, StorageEntity.getParkAtIndex(i).getPid());
         }
         return null;
     }

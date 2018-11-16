@@ -31,4 +31,6 @@ public interface StorageContract {
     public NoteEntry getNoteByPidAndNid(String pid, String nid);
 
     public List<NoteModel> getAllNoteModel();
+
+    public String getNoteByNid(String nid);
 }

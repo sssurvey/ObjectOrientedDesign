@@ -12,7 +12,7 @@ public class NoteValidator {
         return noteEntry;
     }
 
-    public NoteEntry noteValidation(String noteJSON, int pid) throws Exception {
+    public NoteEntry noteValidation(String noteJSON, long pid) throws Exception {
         NoteEntry noteEntry = jsonParser(noteJSON, pid);
         return noteEntry;
     }
@@ -32,7 +32,7 @@ public class NoteValidator {
         return noteEntry;
     }
 
-    private NoteEntry jsonParser(String noteJSON, int pid) throws Exception {
+    private NoteEntry jsonParser(String noteJSON, long pid) throws Exception {
 
         NoteEntry noteEntry = null;
 

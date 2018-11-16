@@ -190,7 +190,7 @@ public class App {
             HttpServletRequest request) {
         NoteValidator validator = new NoteValidator();
         try {
-            NoteEntry validatedNote = validator.noteValidation(noteJSON, Integer.parseInt(nid));
+            NoteEntry validatedNote = validator.noteValidation(noteJSON, Long.parseLong(nid));
             if (storagehelper.updateNoteByNid(validatedNote)) {
                 return ResponseEntity.status(HttpStatus.CREATED) // Created makes more sense
                         .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
@@ -207,6 +207,8 @@ public class App {
                             request)));
         }
     }
+
+    
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);

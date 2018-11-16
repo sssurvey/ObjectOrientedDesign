@@ -1,8 +1,18 @@
+import jsonUtil.ParkValidator;
+import park.Park;
+import storage.Storage;
+import storage.StorageContract;
+
 public class AppPresenter implements AppContract{
 
+	private StorageContract storageContract = new Storage();
+	private ParkValidator parkValidator = new ParkValidator();
+
 	@Override
-	public String createPark(String parkJSON) {
-		return null;
+	public String createPark(String parkJSON) throws Exception {
+		Park park = parkValidator.parkValidation(parkJSON);
+		storageContract.savePark(park);
+		return park.getPid();
 	}
 
 	@Override

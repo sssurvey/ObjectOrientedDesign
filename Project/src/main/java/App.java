@@ -30,6 +30,7 @@ public class App {
 
     private Gson gson;
     private StorageContract storagehelper = new Storage();
+    private AppContract presenter = new AppPresenter();
 
     // Hello World
     @RequestMapping(value = "/hello-world", method = RequestMethod.GET)
@@ -42,11 +43,9 @@ public class App {
     public ResponseEntity<String> createPark(@RequestBody String parkJSON, HttpServletRequest request) {
         gson = new Gson();
         JsonObject successfulReturn = new JsonObject();
-        ParkValidator validator = new ParkValidator();
         try {
-            Park validatedPark = validator.parkValidation(parkJSON);
-            storagehelper.savePark(validatedPark);
-            successfulReturn.addProperty("pid", validatedPark.getPid());
+            String pid = presenter.createPark(parkJSON);
+            successfulReturn.addProperty("pid", pid);
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode(

@@ -147,14 +147,14 @@ public class App {
     @RequestMapping(value = "/parks/{PID}/notes/{NID}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getNoteEntryViaNidAndPid(@PathVariable(value = "PID") String pid,
             @PathVariable(value = "NID") String nid, HttpServletRequest request) {
-        NoteEntry matchedEntry = storagehelper.getNoteByPidAndNid(pid, nid);
-        if (matchedEntry != null)
-            // TODO very bad way to response
-            return ResponseEntity.status(HttpStatus.OK).body(NoteToJsonConvertor.noteEntryToJson(matchedEntry, pid));
-        else
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(NoteToJsonConvertor.noteEntryToJson(storagehelper.getNoteByPidAndNid(pid, nid), pid));
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
                             "The Park that related to this PID is not found", request)));
+        }
     }
 
     // GET /notes Get an array of summary information for all notes.

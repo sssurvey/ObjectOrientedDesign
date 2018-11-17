@@ -102,7 +102,7 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public NoteEntry getNoteByPidAndNid(String pid, String nid) {
+    public NoteEntry getNoteByPidAndNid(String pid, String nid) throws Exception {
         NoteModel noteModel = null;
         try {
             noteModel = getNoteModelByPid(pid);
@@ -116,7 +116,7 @@ public class Storage implements StorageContract {
                     return tempNoteEntry;
             }
         }
-        return null;
+        throw new Exception("Pid Nid Combination Not found");
     }
 
     // TODO,!!! very bad implementation, no consistancy...
@@ -124,7 +124,12 @@ public class Storage implements StorageContract {
     public String getNoteByNid(String nid) {
         NoteEntry noteEntry = null;
         for (int i = 0; i < StorageEntity.getTotalParkCount(); i++) {
-            noteEntry = getNoteByPidAndNid(StorageEntity.getParkAtIndex(i).getPid(), nid);
+            try {
+                noteEntry = getNoteByPidAndNid(StorageEntity.getParkAtIndex(i).getPid(), nid);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             if (noteEntry != null)
                 return NoteToJsonConvertor.noteEntryToJson(noteEntry, StorageEntity.getParkAtIndex(i).getPid());
         }

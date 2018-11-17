@@ -30,7 +30,7 @@ public interface StorageContract {
 
     public NoteModel getNoteModelByPid(String pid) throws Exception;
 
-    public NoteEntry getNoteByPidAndNid(String pid, String nid);
+    public NoteEntry getNoteByPidAndNid(String pid, String nid) throws Exception;
 
     public List<NoteModel> getAllNoteModel();
 

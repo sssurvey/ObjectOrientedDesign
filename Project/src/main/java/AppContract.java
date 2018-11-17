@@ -14,7 +14,7 @@ public interface AppContract {
 
 	public String getAllNoteAssociateToPark(String pid) throws Exception;
 
-	public String getNoteEntryViaNidAndPid(String pid, String nid);
+	public String getNoteEntryViaNidAndPid(String pid, String nid) throws Exception;
 
 	public String getAllNotes();
 

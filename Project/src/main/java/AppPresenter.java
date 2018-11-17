@@ -82,8 +82,9 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String getNoteEntryViaNidAndPid(String pid, String nid) {
-		return null;
+	public String getNoteEntryViaNidAndPid(String pid, String nid) throws Exception {
+		NoteEntry noteEntry = storageContract.getNoteByPidAndNid(pid, nid);
+		return NoteToJsonConvertor.noteEntryToJson(noteEntry, pid);
 	}
 
 	@Override

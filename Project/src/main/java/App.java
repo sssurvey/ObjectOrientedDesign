@@ -1,6 +1,4 @@
 import jsonUtil.*;
-import model.noteModel.NoteEntry;
-import model.noteModel.NoteModel;
 
 import java.io.EOFException;
 
@@ -149,7 +147,7 @@ public class App {
             @PathVariable(value = "NID") String nid, HttpServletRequest request) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(NoteToJsonConvertor.noteEntryToJson(storagehelper.getNoteByPidAndNid(pid, nid), pid));
+                    .body(presenter.getNoteEntryViaNidAndPid(pid, nid));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",

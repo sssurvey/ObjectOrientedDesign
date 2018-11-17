@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+
+import jsonUtil.ParkToJsonConvertor;
 import jsonUtil.ParkValidator;
 import park.Park;
 import storage.Storage;
@@ -7,6 +13,7 @@ public class AppPresenter implements AppContract {
 
 	private StorageContract storageContract = new Storage();
 	private ParkValidator parkValidator = new ParkValidator();
+	private Gson gson = new Gson();
 
 	@Override
 	public String createPark(String parkJSON) throws Exception {
@@ -25,13 +32,22 @@ public class AppPresenter implements AppContract {
 
 	@Override
 	public void deletePark(String pid) throws Exception {
-		if (storageContract.deletePark(pid)) return;
+		if (storageContract.deletePark(pid))
+			return;
 		throw new Exception("PID not found");
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public String getAllParks() {
-		return null;
+
+		List allParkList = new ArrayList<>();
+
+		for (int i = 0; i < storageContract.getTotalParkCount(); i++) {
+			allParkList.add(ParkToJsonConvertor.parkToJsonLoactionInfoAndPidToJson(storageContract.getParkAtIndex(i)));
+		}
+
+		return gson.toJson(allParkList);
 	}
 
 	@Override

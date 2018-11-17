@@ -20,6 +20,6 @@ public interface AppContract {
 
 	public String getNoteViaNid(String nid) throws Exception;
 
-	public String updateNoteByPid(String nid, String noteJSON);
+	public String updateNoteByPid(String nid, String noteJSON) throws Exception;
 
 }

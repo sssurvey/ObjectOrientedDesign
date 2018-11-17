@@ -147,11 +147,11 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public boolean updateNoteByNid(NoteEntry noteEntry) {
+    public boolean updateNoteByNid(NoteEntry noteEntry){
         for (NoteModel noteModel : StorageEntity.ALL_NOTES) {
             for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
                 if (noteEntry.getNid().equals(tempNoteEntry.getNid())) {
-                    tempNoteEntry = noteEntry;
+                    noteModel.getNoteList().set(noteModel.getNoteList().indexOf(tempNoteEntry), noteEntry);
                     return true;
                 }
             }

@@ -115,7 +115,7 @@ public class App {
             @RequestBody String noteJSON, HttpServletRequest request) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(presenter.createNoteAssociateToPark(pid, noteJSON));
-        }  catch (EOFException pidNotFoundException) {
+        } catch (EOFException pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
                             "The Park that related to this PID is not found, thus no delete action has been done",
@@ -179,12 +179,11 @@ public class App {
     @RequestMapping(value = "/notes/{NID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updateNoteByPid(@PathVariable(value = "NID") String nid, @RequestBody String noteJSON,
             HttpServletRequest request) {
-        NoteValidator validator = new NoteValidator();
         try {
-            NoteEntry validatedNote = validator.noteValidation(noteJSON, Long.parseLong(nid));
-            if (storagehelper.updateNoteByNid(validatedNote)) {
+            String returnNoteJson = presenter.updateNoteByPid(nid, noteJSON);
+            if (returnNoteJson != null) {
                 return ResponseEntity.status(HttpStatus.CREATED) // Created makes more sense
-                        .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
+                        .body(returnNoteJson);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -198,8 +197,6 @@ public class App {
                             request)));
         }
     }
-
-    
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);

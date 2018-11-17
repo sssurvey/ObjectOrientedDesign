@@ -102,7 +102,11 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String updateNoteByPid(String nid, String noteJSON) {
-		return null;
+	public String updateNoteByPid(String nid, String noteJSON) throws Exception {
+		NoteEntry noteEntry = noteValidator.noteValidation(noteJSON, Long.parseLong(nid));
+		if (storageContract.updateNoteByNid(noteEntry))
+			return NoteToJsonConvertor.noteToJsonNidResponse(noteEntry);
+		else
+			return null;
 	}
 }

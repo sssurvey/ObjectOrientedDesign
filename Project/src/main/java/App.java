@@ -4,9 +4,6 @@ import java.io.EOFException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -19,16 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import responseCode.BadRequestResponseCode;
 import responseCode.NotFoundResponseCode;
-import storage.Storage;
-import storage.StorageContract;
 
 // the main controller for the program /parkpay base
 @RestController
 @EnableAutoConfiguration
 public class App {
 
-    private Gson gson;
-    private StorageContract storagehelper = new Storage();
     private AppContract presenter = new AppPresenter();
 
     // Hello World
@@ -40,11 +33,8 @@ public class App {
     // Create Park /parkpay/parks/ POST JSON
     @RequestMapping(value = "/parks", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createPark(@RequestBody String parkJSON, HttpServletRequest request) {
-        gson = new Gson();
-        JsonObject successfulReturn = new JsonObject();
         try {
-            String pid = presenter.createPark(parkJSON);
-            successfulReturn.addProperty("pid", pid);
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.createPark(parkJSON));
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
@@ -52,7 +42,6 @@ public class App {
                             "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(successfulReturn));
     }
 
     // Update Park /parks/{PID} PUT JSON
@@ -146,8 +135,7 @@ public class App {
     public ResponseEntity<String> getNoteEntryViaNidAndPid(@PathVariable(value = "PID") String pid,
             @PathVariable(value = "NID") String nid, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(presenter.getNoteEntryViaNidAndPid(pid, nid));
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getNoteEntryViaNidAndPid(pid, nid));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",

@@ -1,9 +1,9 @@
 import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import jsonUtil.NoteToJsonConvertor;
 import jsonUtil.NoteValidator;
@@ -26,8 +26,10 @@ public class AppPresenter implements AppContract {
 	@Override
 	public String createPark(String parkJSON) throws Exception {
 		Park park = parkValidator.parkValidation(parkJSON);
+		JsonObject pidReturn = new JsonObject();
 		storageContract.savePark(park);
-		return park.getPid();
+		pidReturn.addProperty("pid", park.getPid());
+		return gson.toJson(pidReturn);
 	}
 
 	@Override

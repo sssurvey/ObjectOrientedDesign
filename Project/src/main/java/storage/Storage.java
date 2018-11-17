@@ -1,7 +1,9 @@
 package storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jsonUtil.NoteToJsonConvertor;
 import model.noteModel.NoteEntry;
@@ -121,19 +123,27 @@ public class Storage implements StorageContract {
 
     // TODO,!!! very bad implementation, no consistancy...
     @Override
-    public String getNoteByNid(String nid) {
+    @SuppressWarnings("unchecked")
+    public List getNoteByNid(String nid) throws Exception{
+        
         NoteEntry noteEntry = null;
+        List list = new ArrayList<>();
+        String pid = null;
+
         for (int i = 0; i < StorageEntity.getTotalParkCount(); i++) {
             try {
-                noteEntry = getNoteByPidAndNid(StorageEntity.getParkAtIndex(i).getPid(), nid);
+                pid = StorageEntity.getParkAtIndex(i).getPid();
+                noteEntry = getNoteByPidAndNid(pid, nid);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            if (noteEntry != null)
-                return NoteToJsonConvertor.noteEntryToJson(noteEntry, StorageEntity.getParkAtIndex(i).getPid());
+            if (noteEntry != null) {
+                list.add(noteEntry);
+                list.add(pid);
+                return list;
+            }
         }
-        return null;
+        throw new Exception("Note Not found exception");
     }
 
     @Override

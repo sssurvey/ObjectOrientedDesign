@@ -18,7 +18,7 @@ public interface AppContract {
 
 	public String getAllNotes();
 
-	public String getNoteViaNid(String nid);
+	public String getNoteViaNid(String nid) throws Exception;
 
 	public String updateNoteByPid(String nid, String noteJSON);
 

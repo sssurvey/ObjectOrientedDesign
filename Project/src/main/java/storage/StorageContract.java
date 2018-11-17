@@ -1,6 +1,7 @@
 package storage;
 
 import java.util.List;
+import java.util.Map;
 
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
@@ -34,5 +35,5 @@ public interface StorageContract {
 
     public List<NoteModel> getAllNoteModel();
 
-    public String getNoteByNid(String nid);
+    public List getNoteByNid(String nid) throws Exception;
 }

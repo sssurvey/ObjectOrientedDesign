@@ -160,19 +160,19 @@ public class App {
     // GET /notes Get an array of summary information for all notes.
     @RequestMapping(value = "/notes", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getAllNotes() {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(presenter.getAllNotes());
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllNotes());
     }
 
     // GET /notes/[nid] Get note [nid].
     @RequestMapping(value = "/notes/{NID}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getNoteByNid(@PathVariable(value = "NID") String nid, HttpServletRequest request) {
-        if (storagehelper.getNoteByNid(nid) != null)
-            return ResponseEntity.status(HttpStatus.OK).body(storagehelper.getNoteByNid(nid));
-        else
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getNoteViaNid(nid));
+        } catch (Exception nidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
                             "The note that related to this NID is not found", request)));
+        }
     }
 
     // Put /notes/[nid] update that note

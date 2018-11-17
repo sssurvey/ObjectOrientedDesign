@@ -1,6 +1,7 @@
 import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 
@@ -71,7 +72,7 @@ public class AppPresenter implements AppContract {
 		if (storageContract.updateNoteModel(noteEntry, pid)) {
 			return NoteToJsonConvertor.noteToJsonNidResponse(noteEntry);
 		}
-		//TODO: use a better exception to replace this
+		// TODO: use a better exception to replace this
 		throw new EOFException("pidNotFoundException");
 	}
 
@@ -93,13 +94,15 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String getNoteViaNid(String nid) {
-		return null;
+	public String getNoteViaNid(String nid) throws Exception {
+		List list = storageContract.getNoteByNid(nid);
+		NoteEntry noteEntry = (NoteEntry) list.get(0);
+		String pid = (String) list.get(1);
+		return NoteToJsonConvertor.noteEntryToJson(noteEntry, pid);
 	}
 
 	@Override
 	public String updateNoteByPid(String nid, String noteJSON) {
 		return null;
 	}
-
 }

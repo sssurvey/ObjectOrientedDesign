@@ -184,6 +184,10 @@ public class App {
         }
     }
 
+    // TODO: search note
+
+    // POST /orders - create order
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

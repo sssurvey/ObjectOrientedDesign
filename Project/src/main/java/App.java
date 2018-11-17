@@ -2,6 +2,8 @@ import jsonUtil.*;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 
+import java.io.EOFException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
@@ -112,19 +114,14 @@ public class App {
     @RequestMapping(value = "/parks/{PID}/notes", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createNoteAssociateToPark(@PathVariable(value = "PID") String pid,
             @RequestBody String noteJSON, HttpServletRequest request) {
-        NoteValidator validator = new NoteValidator();
         try {
-            NoteEntry validatedNote = validator.noteValidation(noteJSON);
-            if (storagehelper.updateNoteModel(validatedNote, pid)) {
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(NoteToJsonConvertor.noteToJsonNidResponse(validatedNote));
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
-                                "The Park that related to this PID is not found, thus no delete action has been done",
-                                request)));
-            }
-        } catch (Exception didNotPassValidationException) {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.createNoteAssociateToPark(pid, noteJSON));
+        }  catch (EOFException pidNotFoundException) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
+                            "The Park that related to this PID is not found, thus no delete action has been done",
+                            request)));
+        } catch (Exception notValidJSOException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new BadRequestResponseCode(
                             "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",

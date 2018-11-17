@@ -1,10 +1,14 @@
+import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 
+import jsonUtil.NoteToJsonConvertor;
+import jsonUtil.NoteValidator;
 import jsonUtil.ParkToJsonConvertor;
 import jsonUtil.ParkValidator;
+import model.noteModel.NoteEntry;
 import park.Park;
 import storage.Storage;
 import storage.StorageContract;
@@ -13,6 +17,8 @@ public class AppPresenter implements AppContract {
 	// TODO: externalize all the exception to an enum
 	private StorageContract storageContract = new Storage();
 	private ParkValidator parkValidator = new ParkValidator();
+	private NoteValidator noteValidator = new NoteValidator();
+
 	private Gson gson = new Gson();
 
 	@Override
@@ -51,15 +57,20 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String getParkDetail(String pid) throws Exception{
+	public String getParkDetail(String pid) throws Exception {
 		Park park = storageContract.getParkByPid(pid);
-		if (park != null) return ParkToJsonConvertor.parkToJsonModel(park);
+		if (park != null)
+			return ParkToJsonConvertor.parkToJsonModel(park);
 		throw new Exception("PID not found");
 	}
 
 	@Override
-	public String createNoteAssociateToPark(String pid, String noteJSON) {
-		return null;
+	public String createNoteAssociateToPark(String pid, String noteJSON) throws Exception {
+		NoteEntry noteEntry = noteValidator.noteValidation(noteJSON);
+		if (storageContract.updateNoteModel(noteEntry, pid)) {
+			return NoteToJsonConvertor.noteToJsonNidResponse(noteEntry);
+		}
+		throw new EOFException("pidNotFoundException");
 	}
 
 	@Override

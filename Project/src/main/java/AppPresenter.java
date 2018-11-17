@@ -89,7 +89,7 @@ public class AppPresenter implements AppContract {
 
 	@Override
 	public String getAllNotes() {
-		return null;
+		return NoteToJsonConvertor.allNoteToJson(storageContract.getAllNoteModel());
 	}
 
 	@Override

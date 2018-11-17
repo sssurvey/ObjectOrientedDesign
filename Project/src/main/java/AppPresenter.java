@@ -10,7 +10,7 @@ import storage.Storage;
 import storage.StorageContract;
 
 public class AppPresenter implements AppContract {
-
+	// TODO: externalize all the exception to an enum
 	private StorageContract storageContract = new Storage();
 	private ParkValidator parkValidator = new ParkValidator();
 	private Gson gson = new Gson();
@@ -51,8 +51,10 @@ public class AppPresenter implements AppContract {
 	}
 
 	@Override
-	public String getParkDetail(String pid) {
-		return null;
+	public String getParkDetail(String pid) throws Exception{
+		Park park = storageContract.getParkByPid(pid);
+		if (park != null) return ParkToJsonConvertor.parkToJsonModel(park);
+		throw new Exception("PID not found");
 	}
 
 	@Override

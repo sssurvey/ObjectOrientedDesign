@@ -8,7 +8,7 @@ public interface AppContract {
 
 	public String getAllParks();
 
-	public String getParkDetail(String pid);
+	public String getParkDetail(String pid) throws Exception;
 
 	public String createNoteAssociateToPark(String pid, String noteJSON);
 

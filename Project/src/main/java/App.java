@@ -95,10 +95,9 @@ public class App {
     // Get park detail /park/{pid} GET -- return everything about the park
     @RequestMapping(value = "/parks/{PID}", method = RequestMethod.GET, produces = { "application/json" })
     public ResponseEntity<String> getParkDetail(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
-        Park park = storagehelper.getParkByPid(pid);
-        if (park != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(ParkToJsonConvertor.parkToJsonModel(park));
-        } else {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getParkDetail(pid));
+        } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
                             "The Park that related to this PID is not found, thus no delete action has been done",

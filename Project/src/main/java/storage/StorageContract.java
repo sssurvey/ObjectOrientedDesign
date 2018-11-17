@@ -1,6 +1,7 @@
 package storage;
 
 import java.util.List;
+import java.util.Map;
 
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
@@ -10,7 +11,7 @@ public interface StorageContract {
 
     public void savePark(Park park);
 
-    public void updatePark(Park park, String pid);
+    public boolean updatePark(Park park, String pid);
 
     public boolean deletePark(String pid);
 
@@ -28,11 +29,11 @@ public interface StorageContract {
 
     public boolean updateNoteByNid(NoteEntry noteEntry);
 
-    public NoteModel getNoteModelByPid(String pid);
+    public NoteModel getNoteModelByPid(String pid) throws Exception;
 
-    public NoteEntry getNoteByPidAndNid(String pid, String nid);
+    public NoteEntry getNoteByPidAndNid(String pid, String nid) throws Exception;
 
     public List<NoteModel> getAllNoteModel();
 
-    public String getNoteByNid(String nid);
+    public List getNoteByNid(String nid) throws Exception;
 }

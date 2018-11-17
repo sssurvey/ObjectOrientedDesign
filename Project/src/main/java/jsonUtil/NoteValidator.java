@@ -28,6 +28,8 @@ public class NoteValidator {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             noteEntry = new NoteEntry(jsonObject.get("title").getAsString(), jsonObject.get("text").getAsString(),
                     jsonObject.get("vid").getAsString());
+        } else {
+            throw new Exception("Not valid JSON");
         }
         return noteEntry;
     }

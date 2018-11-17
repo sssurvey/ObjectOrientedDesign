@@ -1,6 +1,5 @@
 package jsonUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -10,19 +9,13 @@ import park.Park;
 
 public class ParkToJsonConvertor {
 
-    public static String allParkToJsonLoactionInfoAndPidToJson() {
-        final storage.Storage storagehelper = new storage.Storage();
-        List<OutputJsonModelLocationAndPid> allParkList = new ArrayList<>();
-        for (int i = 0; i < storagehelper.getTotalParkCount(); i++) {
-            allParkList.add(new OutputJsonModelLocationAndPid(storagehelper.getParkAtIndex(i).getPid(),
-                    storagehelper.getParkAtIndex(i).getLocationInfoModel()));
-        }
-        return parkListToJsonLocationInfo(allParkList);
-    }
-
     public static String parkToJsonModel(Park park) {
         Gson gson = new Gson();
         return gson.toJson(park);
+    }
+
+    public static OutputJsonModelLocationAndPid parkToJsonLoactionInfoAndPidToJson(Park park) {
+        return new OutputJsonModelLocationAndPid(park.getPid(), park.getLocationInfoModel());
     }
 
     private static String parkListToJsonLocationInfo(List<OutputJsonModelLocationAndPid> parksList) {

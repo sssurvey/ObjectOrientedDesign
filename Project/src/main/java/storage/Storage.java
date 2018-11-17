@@ -3,7 +3,6 @@ package storage;
 import java.util.ArrayList;
 import java.util.List;
 
-import jsonUtil.NoteToJsonConvertor;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import park.Park;
@@ -18,12 +17,14 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public void updatePark(Park park, String pid) {
+    public boolean updatePark(Park park, String pid) {
         for (Park tempPark : StorageEntity.ALL_PARKS) {
             if (pid.equals(tempPark.getPid())) {
                 StorageEntity.replaceEntryAtIndex(StorageEntity.ALL_PARKS.indexOf(tempPark), park);
+                return true;
             }
         }
+        return false;
     }
 
     @Override
@@ -90,45 +91,64 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public NoteModel getNoteModelByPid(String pid) {
+    public NoteModel getNoteModelByPid(String pid) throws Exception {
         for (NoteModel tempNoteModel : StorageEntity.ALL_NOTES) {
             if (pid.equals(tempNoteModel.getPid())) {
                 return tempNoteModel;
             }
         }
-        return null;
+        throw new Exception("PID not found");
     }
 
     @Override
-    public NoteEntry getNoteByPidAndNid(String pid, String nid) {
-        NoteModel noteModel = getNoteModelByPid(pid);
+    public NoteEntry getNoteByPidAndNid(String pid, String nid) throws Exception {
+        NoteModel noteModel = null;
+        try {
+            noteModel = getNoteModelByPid(pid);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         if (noteModel != null) {
             for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
                 if (nid.equals(tempNoteEntry.getNid()))
                     return tempNoteEntry;
             }
         }
-        return null;
+        throw new Exception("Pid Nid Combination Not found");
     }
 
     // TODO,!!! very bad implementation, no consistancy...
     @Override
-    public String getNoteByNid(String nid) {
+    @SuppressWarnings("unchecked")
+    public List getNoteByNid(String nid) throws Exception{
+        
         NoteEntry noteEntry = null;
+        List list = new ArrayList<>();
+        String pid = null;
+
         for (int i = 0; i < StorageEntity.getTotalParkCount(); i++) {
-            noteEntry = getNoteByPidAndNid(StorageEntity.getParkAtIndex(i).getPid(), nid);
-            if (noteEntry != null)
-                return NoteToJsonConvertor.noteEntryToJson(noteEntry, StorageEntity.getParkAtIndex(i).getPid());
+            try {
+                pid = StorageEntity.getParkAtIndex(i).getPid();
+                noteEntry = getNoteByPidAndNid(pid, nid);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (noteEntry != null) {
+                list.add(noteEntry);
+                list.add(pid);
+                return list;
+            }
         }
-        return null;
+        throw new Exception("Note Not found exception");
     }
 
     @Override
-    public boolean updateNoteByNid(NoteEntry noteEntry) {
+    public boolean updateNoteByNid(NoteEntry noteEntry){
         for (NoteModel noteModel : StorageEntity.ALL_NOTES) {
             for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
                 if (noteEntry.getNid().equals(tempNoteEntry.getNid())) {
-                    tempNoteEntry = noteEntry;
+                    noteModel.getNoteList().set(noteModel.getNoteList().indexOf(tempNoteEntry), noteEntry);
                     return true;
                 }
             }

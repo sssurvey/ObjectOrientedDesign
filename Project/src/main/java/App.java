@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import park.Park;
 import responseCode.BadRequestResponseCode;
 import responseCode.NotFoundResponseCode;
 import storage.Storage;
@@ -134,10 +133,9 @@ public class App {
     @RequestMapping(value = "/parks/{PID}/notes", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getAllNoteAssociteToPark(@PathVariable(value = "PID") String pid,
             HttpServletRequest request) {
-        NoteModel matchedModel = storagehelper.getNoteModelByPid(pid);
-        if (matchedModel != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(NoteToJsonConvertor.noteModelToJson(matchedModel));
-        } else {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllNoteAssociateToPark(pid));
+        } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
                             "The Park that related to this PID is not found, thus no delete action has been done",

@@ -12,7 +12,7 @@ public interface AppContract {
 
 	public String createNoteAssociateToPark(String pid, String noteJSON) throws Exception;
 
-	public String getAllNoteAssociateToPark(String pid);
+	public String getAllNoteAssociateToPark(String pid) throws Exception;
 
 	public String getNoteEntryViaNidAndPid(String pid, String nid);
 

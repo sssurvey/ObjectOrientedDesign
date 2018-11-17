@@ -9,6 +9,7 @@ import jsonUtil.NoteValidator;
 import jsonUtil.ParkToJsonConvertor;
 import jsonUtil.ParkValidator;
 import model.noteModel.NoteEntry;
+import model.noteModel.NoteModel;
 import park.Park;
 import storage.Storage;
 import storage.StorageContract;
@@ -70,12 +71,14 @@ public class AppPresenter implements AppContract {
 		if (storageContract.updateNoteModel(noteEntry, pid)) {
 			return NoteToJsonConvertor.noteToJsonNidResponse(noteEntry);
 		}
+		//TODO: use a better exception to replace this
 		throw new EOFException("pidNotFoundException");
 	}
 
 	@Override
-	public String getAllNoteAssociateToPark(String pid) {
-		return null;
+	public String getAllNoteAssociateToPark(String pid) throws Exception {
+		NoteModel noteModel = storageContract.getNoteModelByPid(pid);
+		return NoteToJsonConvertor.noteModelToJson(noteModel);
 	}
 
 	@Override

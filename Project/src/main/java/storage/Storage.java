@@ -92,18 +92,24 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public NoteModel getNoteModelByPid(String pid) {
+    public NoteModel getNoteModelByPid(String pid) throws Exception {
         for (NoteModel tempNoteModel : StorageEntity.ALL_NOTES) {
             if (pid.equals(tempNoteModel.getPid())) {
                 return tempNoteModel;
             }
         }
-        return null;
+        throw new Exception("PID not found");
     }
 
     @Override
     public NoteEntry getNoteByPidAndNid(String pid, String nid) {
-        NoteModel noteModel = getNoteModelByPid(pid);
+        NoteModel noteModel = null;
+        try {
+            noteModel = getNoteModelByPid(pid);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         if (noteModel != null) {
             for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
                 if (nid.equals(tempNoteEntry.getNid()))

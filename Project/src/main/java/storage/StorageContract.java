@@ -28,7 +28,7 @@ public interface StorageContract {
 
     public boolean updateNoteByNid(NoteEntry noteEntry);
 
-    public NoteModel getNoteModelByPid(String pid);
+    public NoteModel getNoteModelByPid(String pid) throws Exception;
 
     public NoteEntry getNoteByPidAndNid(String pid, String nid);
 

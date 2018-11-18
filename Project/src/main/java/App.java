@@ -184,6 +184,22 @@ public class App {
         }
     }
 
+    // TODO: search note
+
+    // POST /orders - create order
+    @RequestMapping(value = "/orders", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> createOrder(@RequestBody String orderJSON, HttpServletRequest request) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.createOrder(orderJSON));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                            "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
+                            "Your request data didn't pass validation", "Something is missing in your request",
+                            request)));
+        }
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

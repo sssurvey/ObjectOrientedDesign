@@ -10,7 +10,11 @@ public class NumberFormatter {
         return String.format("%04d", number);
     }
 
-    public static String formatToEightDigitStringNid(long number) {
+    public static String formatToEightDigitStringVid(long number) {
         return String.format("%08d", number);
+    }
+
+    public static String formatToTenDigitStringOid(long number) {
+        return String.format("%10d", number);
     }
 }

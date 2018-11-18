@@ -18,6 +18,7 @@ import model.orderModel.OrderModel;
 import model.visitorModel.*;
 import park.Park;
 import search.NoteSearch;
+import search.OrderSearch;
 import search.ParkSearch;
 import storage.Storage;
 import storage.StorageContract;
@@ -171,6 +172,15 @@ public class AppPresenter implements AppContract {
             return getAllNotes();
         } else {
             return NoteToJsonConvertor.allNoteToJson(NoteSearch.search(key));
+        }
+    }
+
+    @Override
+    public String searchOrder(String key) {
+        if (key == null) {
+            return getAllOrder();
+        } else {
+            return OrderToJsonConvertor.convertListOrderModelToOutputJSON(OrderSearch.search(key));
         }
     }
 }

@@ -144,7 +144,7 @@ ___REPORTS___
 
 ___SEARCH___
 
-- [x] Search ( GET /search?key=keyword{&start_date=YYYYMMDD&end_date=YYYYMMDD} )
+- [ ] Search ( GET /search?key=keyword{&start_date=YYYYMMDD&end_date=YYYYMMDD} )
 
 ### All Tasks
 - You can view all aviliable gradle tasks via

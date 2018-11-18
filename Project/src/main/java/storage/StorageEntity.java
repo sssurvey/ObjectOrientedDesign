@@ -52,4 +52,8 @@ public class StorageEntity {
     public static void addEntry(OrderModel orderModel) {
         ALL_ORDERS.add(orderModel);
     }
+
+    public static int getTotalOrderCount() {
+        return ALL_NOTES.size();
+    }
 }

@@ -168,6 +168,12 @@ public class Storage implements StorageContract {
         StorageEntity.addEntry(orderModel);
     }
 
+    @Override
+    public List<OrderModel> getAllOrderModel() {
+        List<OrderModel> allOrderList = new ArrayList<OrderModel>(StorageEntity.ALL_ORDERS);
+        return allOrderList;
+    }
+
     private List<String> updateAllPids() {
         List<String> pidList = new ArrayList<>();
         for (Park temPark : StorageEntity.ALL_PARKS) {

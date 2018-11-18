@@ -35,4 +35,6 @@ public interface AppContract {
 	public String searchParks(String key);
 
 	public String searchNotes(String key);
+
+	public String searchOrder(String key);
 }

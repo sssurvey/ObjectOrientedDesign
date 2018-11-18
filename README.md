@@ -102,6 +102,86 @@ Homework_3/src/
 ```
 
 ---
-- [ ] Final Project - A park parking payment system
+- [x] Final Project - A park parking payment system
 
 > http://cs.iit.edu/~virgil/cs445/mail.fall2018/project/project.html
+
+__$ tree Project/src/__
+
+```bash
+haominshi@Haomins-MacBook-Pro:~/GitRepo/ObjectOrientedDesign/Project$ tree src
+src
+├── main
+│   ├── java
+│   │   ├── App.java
+│   │   ├── AppContract.java
+│   │   ├── AppPresenter.java
+│   │   ├── jsonUtil
+│   │   │   ├── NoteToJsonConvertor.java
+│   │   │   ├── NoteValidator.java
+│   │   │   ├── OrderToJsonConvertor.java
+│   │   │   ├── OrderValidator.java
+│   │   │   ├── ParkToJsonConvertor.java
+│   │   │   ├── ParkValidator.java
+│   │   │   ├── ResponseJsonParser.java
+│   │   │   └── VisitorModelToJsonConvertor.java
+│   │   ├── model
+│   │   │   ├── noteModel
+│   │   │   │   ├── NoteEntry.java
+│   │   │   │   └── NoteModel.java
+│   │   │   ├── orderModel
+│   │   │   │   └── OrderModel.java
+│   │   │   ├── parkModel
+│   │   │   │   ├── LocationInfoModel.java
+│   │   │   │   ├── ParkModel.java
+│   │   │   │   └── PaymentInfoModel.java
+│   │   │   ├── vehicleModel
+│   │   │   │   ├── VehicleModel.java
+│   │   │   │   └── VehicleTypeInfoModel.java
+│   │   │   └── visitorModel
+│   │   │       └── VisitorModel.java
+│   │   ├── park
+│   │   │   ├── Park.java
+│   │   │   └── ParkContract.java
+│   │   ├── responseCode
+│   │   │   ├── BadRequestResponseCode.java
+│   │   │   ├── CreatedResponseCode.java
+│   │   │   ├── NotFoundResponseCode.java
+│   │   │   ├── OkResponseCode.java
+│   │   │   ├── ResponseCodeContract.java
+│   │   │   └── StatusCodes.java
+│   │   ├── search
+│   │   │   ├── NoteSearch.java
+│   │   │   ├── OrderSearch.java
+│   │   │   ├── ParkSearch.java
+│   │   │   └── VisitorSearch.java
+│   │   ├── storage
+│   │   │   ├── Storage.java
+│   │   │   ├── StorageContract.java
+│   │   │   └── StorageEntity.java
+│   │   └── util
+│   │       ├── ArrayFormatter.java
+│   │       ├── DateHelper.java
+│   │       ├── IdGenerator.java
+│   │       ├── NumberFormatter.java
+│   │       └── PriceCalculator.java
+│   └── resources
+│       └── application.properties
+└── test
+    ├── java
+    │   ├── AppPresenterTest.java
+    │   ├── AppTest.java
+    │   ├── ArrayFormatterTest.java
+    │   ├── IdGeneratorTest.java
+    │   ├── LocationInfoModelTest.java
+    │   ├── NoteToJsonConvertorTest.java
+    │   ├── NumberFormatterTest.java
+    │   ├── ParkModelTest.java
+    │   ├── ParkTest.java
+    │   ├── ParkValidatorTest.java
+    │   └── PaymentInfoModelTest.java
+    └── mockData
+        └── createPark1.json
+
+18 directories, 53 files
+```

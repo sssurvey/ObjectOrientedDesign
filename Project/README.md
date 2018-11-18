@@ -53,6 +53,11 @@ src
 │   │   │   ├── OkResponseCode.java
 │   │   │   ├── ResponseCodeContract.java
 │   │   │   └── StatusCodes.java
+│   │   ├── search
+│   │   │   ├── NoteSearch.java
+│   │   │   ├── OrderSearch.java
+│   │   │   ├── ParkSearch.java
+│   │   │   └── VisitorSearch.java
 │   │   ├── storage
 │   │   │   ├── Storage.java
 │   │   │   ├── StorageContract.java
@@ -81,7 +86,7 @@ src
     └── mockData
         └── createPark1.json
 
-17 directories, 49 files
+18 directories, 53 files
 
 ```
 
@@ -149,13 +154,20 @@ haominshi@Haomins-MacBook-Pro:~/GitRepo/ObjectOrientedDesign/Project$ ./gradlew 
 
 
 ### Stats
-- Totoal Lines of Code:
+- Totoal Lines of Code sourceCode vs Compiled: ..
 ```
-Countting took 2586 ms. The result is: 
-    total:	14,718
-    code:	13,685
-    comment:	264
-    blank:	769
+Start counting... 
+Countting took 283 ms. The result is: 
+    total:	11,971
+    code:	10,961
+    comment:	266
+    blank:	744
+Start counting... 
+Countting took 1807 ms. The result is: 
+    total:	647,585
+    code:	642,613
+    comment:	267
+    blank:	4,705
 ```
 
 - Lines in unitests:

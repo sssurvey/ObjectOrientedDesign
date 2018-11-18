@@ -208,7 +208,7 @@ public class App {
 
     // GET /orders/{PID} - get 1 order
     @RequestMapping(value = "/orders/{OID}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<String> getAllNotes(@PathVariable(value = "OID") String oid, HttpServletRequest request) {
+    public ResponseEntity<String> getOrderByOid(@PathVariable(value = "OID") String oid, HttpServletRequest request) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(presenter.getOrderByOid(oid));
         } catch (Exception e) {
@@ -216,6 +216,12 @@ public class App {
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
                             "The order that related to this OID is not found", request)));
         }
+    }
+
+    // Get /visitors - get All visitors
+    @RequestMapping(value = "/visitors", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllVisitors(HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllVisitor());
     }
 
     public static void main(String[] args) {

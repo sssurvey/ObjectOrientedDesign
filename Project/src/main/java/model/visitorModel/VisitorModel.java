@@ -18,15 +18,34 @@ public class VisitorModel {
     }
 
     public VisitorModel(String name, String email, VisitorPaymentInfoModel visitorPaymentInfoModel) {
+        this.name = name;
+        this.email = email;
+        this.visitorPaymentInfoModel = visitorPaymentInfoModel;
         this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
     }
 
     public VisitorModel(String name, String email) {
+        this.name = name;
+        this.email = email;
         this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
     }
 
     public VisitorModel() {
         this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**

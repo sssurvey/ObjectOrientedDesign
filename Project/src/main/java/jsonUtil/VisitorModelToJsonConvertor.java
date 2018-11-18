@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import model.noteModel.NoteModel;
+import model.orderModel.OrderModel;
 import model.visitorModel.VisitorModel;
 
 public class VisitorModelToJsonConvertor {
@@ -16,6 +18,12 @@ public class VisitorModelToJsonConvertor {
             outputList.add(new VisitorModelBasic(visitorModel));
         }
         return gson.toJson(outputList);
+    }
+
+    public static String visitorModelToJsonDetailed(VisitorModel visitorModel, OrderModel orderModel,
+            NoteModel noteModel) {
+        Gson gson = new Gson();
+        return null;
     }
 
     private static class VisitorModelBasic {

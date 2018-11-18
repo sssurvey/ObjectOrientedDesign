@@ -1,7 +1,6 @@
 package model.visitorModel;
 
 import util.IdGenerator;
-import util.NumberFormatter;
 
 public class VisitorModel {
 
@@ -10,10 +9,11 @@ public class VisitorModel {
     private String vid;
     private VisitorPaymentInfoModel visitorPaymentInfoModel;
 
+    // TODO: vid check is bad
     public VisitorModel(String name, String email, String card, String nameOnCard, String expirationDate, int zip) {
         this.name = name;
         this.email = email;
-        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
         this.visitorPaymentInfoModel = new VisitorPaymentInfoModel(card, nameOnCard, expirationDate, zip);
     }
 
@@ -21,17 +21,13 @@ public class VisitorModel {
         this.name = name;
         this.email = email;
         this.visitorPaymentInfoModel = visitorPaymentInfoModel;
-        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
     }
 
     public VisitorModel(String name, String email) {
         this.name = name;
         this.email = email;
-        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
-    }
-
-    public VisitorModel() {
-        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
     }
 
     /**

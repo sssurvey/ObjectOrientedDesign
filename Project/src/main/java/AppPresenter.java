@@ -136,7 +136,7 @@ public class AppPresenter implements AppContract {
     }
 
     @Override
-    public String getAllVisitor(){
+    public String getAllVisitor() {
         return VisitorModelToJsonConvertor.visitorListToJson(storageContract.getAllVisitors());
     }
 }

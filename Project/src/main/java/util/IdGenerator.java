@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import model.visitorModel.VisitorModel;
+import storage.StorageEntity;
+
 public class IdGenerator {
     // should be called only in the BL of the park, this class should have nothing
     // to do with the models
@@ -54,7 +57,6 @@ public class IdGenerator {
         while (generatedVidList.contains(vid)) {
             vid = ThreadLocalRandom.current().nextLong(MIN_VID, MAX_VID + 1l);
         }
-        generatedOidList.add(vid);
         return vid; // permitive.
     }
 
@@ -74,5 +76,19 @@ public class IdGenerator {
         }
         generatedOidList.add(tid);
         return tid; // permitive.
+    }
+
+    public static String generateVidBasdOnEmail(String email) {
+        String vid;
+        if (StorageEntity.ALL_VISITORS.isEmpty()) {
+            vid = NumberFormatter.formatToFiveDigitStringVid(generateVid());
+        } else {
+            for (VisitorModel visitorModel : StorageEntity.ALL_VISITORS) {
+                if (email.equals(visitorModel.getEmail()))
+                    return visitorModel.getVid();
+            }
+            vid = NumberFormatter.formatToFiveDigitStringVid(generateVid());
+        }
+        return vid;
     }
 }

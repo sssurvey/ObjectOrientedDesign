@@ -34,7 +34,7 @@ public class OrderToJsonConvertor {
         return gson.toJson(allOrderReturnModelList);
     }
 
-    private static class AllOrderReturnModel {
+    static class AllOrderReturnModel {
 
         private String oid;
         private String pid;
@@ -42,7 +42,7 @@ public class OrderToJsonConvertor {
         private String type;
         private int amount;
 
-        private AllOrderReturnModel(OrderModel orderModel) {
+        AllOrderReturnModel(OrderModel orderModel) {
             this.oid = orderModel.getOid();
             this.pid = orderModel.getPid();
             this.date = orderModel.getDate();

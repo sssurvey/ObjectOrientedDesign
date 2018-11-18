@@ -42,7 +42,13 @@ public interface StorageContract {
 
     public List<OrderModel> getAllOrderModel();
 
-    public OrderModel getOrderModelByOid(String pid) throws Exception;
+    public OrderModel getOrderModelByOid(String oid) throws Exception;
 
     public List<VisitorModel> getAllVisitors();
+
+    public VisitorModel getVisitorByVid(String vid);
+
+    public List<OrderModel> getOrderModelByVid(String vid);
+
+    public List<NoteEntry> getAllNoteEntryByVid(String vid);
 }

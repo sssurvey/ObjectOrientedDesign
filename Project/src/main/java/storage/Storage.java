@@ -165,6 +165,18 @@ public class Storage implements StorageContract {
     }
 
     @Override
+    public List<NoteEntry> getAllNoteEntryByVid(String vid) {
+        List<NoteEntry> returnNoteEntries = new ArrayList<>();
+        for (NoteModel noteModel : StorageEntity.ALL_NOTES) {
+            for (NoteEntry noteEntry : noteModel.getNoteList()) {
+                if (noteEntry.getVid().equals(vid))
+                    returnNoteEntries.add(noteEntry);
+            }
+        }
+        return returnNoteEntries;
+    }
+
+    @Override
     public void saveOrder(OrderModel orderModel) {
         StorageEntity.addEntry(orderModel);
     }
@@ -192,6 +204,24 @@ public class Storage implements StorageContract {
             visitorList.add(orderModel.getVisitorModel());
         }
         return visitorList;
+    }
+
+    @Override
+    public VisitorModel getVisitorByVid(String vid) {
+        for (VisitorModel visitorModel : StorageEntity.ALL_VISITORS) {
+            if (visitorModel.getVid().equals(vid))
+                return visitorModel;
+        }
+        return null;
+    }
+
+    @Override
+    public List<OrderModel> getOrderModelByVid(String vid) {
+        List<OrderModel> returnList = new ArrayList<>();
+        for (OrderModel orderModel : StorageEntity.ALL_ORDERS) {
+            returnList.add(orderModel);
+        }
+        return returnList;
     }
 
     private List<String> updateAllPids() {

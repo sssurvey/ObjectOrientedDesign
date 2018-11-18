@@ -26,4 +26,6 @@ public interface AppContract {
 
 	public String getAllOrder();
 
+	public String getOrderByOid(String oid) throws Exception;
+
 }

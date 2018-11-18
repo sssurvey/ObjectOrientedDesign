@@ -32,7 +32,7 @@ public class OrderValidator {
             JsonObject visitorObject = jsonObject.getAsJsonObject("visitor");
             JsonObject visitorPaymentInfoObject = visitorObject.getAsJsonObject("payment_info");
 
-            pid = NumberFormatter.formatToThreeDigitStringPid(jsonObject.get("pid").getAsInt());
+            pid = NumberFormatter.formatToEightDigitStringPid(jsonObject.get("pid").getAsInt());
 
             vehicleModel = new VehicleModel(vehicleObject.get("state").getAsString(),
                     vehicleObject.get("plate").getAsString(), vehicleObject.get("type").getAsString());

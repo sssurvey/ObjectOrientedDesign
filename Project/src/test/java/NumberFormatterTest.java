@@ -6,6 +6,6 @@ public class NumberFormatterTest {
 
     @Test
     public void testFormatter() {
-        assertEquals("099", NumberFormatter.formatToThreeDigitStringPid(99l));
+        assertEquals("00000099", NumberFormatter.formatToEightDigitStringPid(99l));
     }
 }

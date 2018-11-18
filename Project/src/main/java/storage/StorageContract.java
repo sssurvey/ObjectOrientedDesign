@@ -40,4 +40,6 @@ public interface StorageContract {
     public void saveOrder(OrderModel orderModel);
 
     public List<OrderModel> getAllOrderModel();
+
+    public OrderModel getOrderModelByOid(String pid) throws Exception;
 }

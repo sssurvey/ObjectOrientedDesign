@@ -47,6 +47,13 @@ public class VisitorModel {
         this.vid = vid;
     }
 
+    /**
+     * @return the vid
+     */
+    public String getVid() {
+        return vid;
+    }
+
     public void setupVisitorPaymentInfoModel(String card, String nameOnCard, String expirationDate, int zip) {
         this.visitorPaymentInfoModel = new VisitorPaymentInfoModel(card, nameOnCard, expirationDate, zip);
     }
@@ -63,6 +70,14 @@ public class VisitorModel {
      */
     public VisitorPaymentInfoModel getVisitorPaymentInfoModel() {
         return visitorPaymentInfoModel;
+    }
+
+    public String getCard() {
+        return this.visitorPaymentInfoModel.getCard();
+    }
+
+    public void setCard(String card) {
+        this.visitorPaymentInfoModel.setCard(card);
     }
 
     private class VisitorPaymentInfoModel {
@@ -105,6 +120,34 @@ public class VisitorModel {
          */
         public void setZip(int zip) {
             this.zip = zip;
+        }
+
+        /**
+         * @return the card
+         */
+        public String getCard() {
+            return card;
+        }
+
+        /**
+         * @return the expirationDate
+         */
+        public String getExpirationDate() {
+            return expirationDate;
+        }
+
+        /**
+         * @return the nameOnCard
+         */
+        public String getNameOnCard() {
+            return nameOnCard;
+        }
+
+        /**
+         * @return the zip
+         */
+        public int getZip() {
+            return zip;
         }
     }
 }

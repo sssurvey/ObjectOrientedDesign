@@ -174,6 +174,16 @@ public class Storage implements StorageContract {
         return allOrderList;
     }
 
+    @Override
+    public OrderModel getOrderModelByOid(String oid) throws Exception {
+        for (OrderModel orderModel : StorageEntity.ALL_ORDERS) {
+            if (oid.equals(orderModel.getOid())) {
+                return orderModel;
+            }
+        }
+        throw new Exception("Oid not found");
+    }
+
     private List<String> updateAllPids() {
         List<String> pidList = new ArrayList<>();
         for (Park temPark : StorageEntity.ALL_PARKS) {

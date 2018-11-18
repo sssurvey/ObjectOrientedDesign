@@ -254,6 +254,11 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.searchOrder(key));
     }
 
+    @RequestMapping(value = "/visitors", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchVisitor(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchVisitor(key));
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

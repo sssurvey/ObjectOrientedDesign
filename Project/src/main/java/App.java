@@ -200,6 +200,12 @@ public class App {
         }
     }
 
+    // GET /orders - get all orders
+    @RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllNotes(HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllOrder());
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

@@ -28,6 +28,13 @@ public class PaymentInfoModel {
         return vechicleTypeInfoModel;
     }
 
+    /**
+     * @return the pricesMap
+     */
+    public Map<String, int[]> getPricesMap() {
+        return pricesMap;
+    }
+
     public void addPrices(String carType, int[] platePrices) {
         pricesMap.put(carType, platePrices);
     }

@@ -15,6 +15,7 @@ import jsonUtil.VisitorModelToJsonConvertor;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
+import model.visitorModel.*;
 import park.Park;
 import storage.Storage;
 import storage.StorageContract;
@@ -138,5 +139,18 @@ public class AppPresenter implements AppContract {
     @Override
     public String getAllVisitor() {
         return VisitorModelToJsonConvertor.visitorListToJson(storageContract.getAllVisitors());
+    }
+
+    @Override
+    public String getVisitorDetailByVid(String vid) throws Exception {
+        List<OrderModel> allOrders;
+        List<NoteEntry> allNotes;
+        VisitorModel visitorModel = storageContract.getVisitorByVid(vid);
+        if (visitorModel != null) {
+            allOrders = storageContract.getOrderModelByVid(vid);
+            allNotes = storageContract.getAllNoteEntryByVid(vid);
+            return VisitorModelToJsonConvertor.visitorDetailToJson(visitorModel, allOrders, allNotes);
+        }
+        throw new Exception("vid not found");
     }
 }

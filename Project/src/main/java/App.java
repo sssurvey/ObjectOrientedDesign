@@ -224,6 +224,20 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllVisitor());
     }
 
+    // Get /visitors/{VID} - get visitor details via vid
+    @RequestMapping(value = "/visitors/{VID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getVisitorDetailsViaVid(@PathVariable(value = "VID") String vid,
+            HttpServletRequest request) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getVisitorDetailByVid(vid));
+            // TODO: clear the JSON date to match the format
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Visitor ID Not Found", "NOT FOUND",
+                            "The order that related to this VID is not found", request)));
+        }
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

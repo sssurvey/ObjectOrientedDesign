@@ -30,4 +30,5 @@ public interface AppContract {
 
 	public String getAllVisitor();
 
+	public String getVisitorDetailByVid(String vid) throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
+import model.orderModel.OrderModel;
 import park.Park;
 
 public class Storage implements StorageContract {
@@ -121,8 +122,8 @@ public class Storage implements StorageContract {
     // TODO,!!! very bad implementation, no consistancy...
     @Override
     @SuppressWarnings("unchecked")
-    public List getNoteByNid(String nid) throws Exception{
-        
+    public List getNoteByNid(String nid) throws Exception {
+
         NoteEntry noteEntry = null;
         List list = new ArrayList<>();
         String pid = null;
@@ -144,7 +145,7 @@ public class Storage implements StorageContract {
     }
 
     @Override
-    public boolean updateNoteByNid(NoteEntry noteEntry){
+    public boolean updateNoteByNid(NoteEntry noteEntry) {
         for (NoteModel noteModel : StorageEntity.ALL_NOTES) {
             for (NoteEntry tempNoteEntry : noteModel.getNoteList()) {
                 if (noteEntry.getNid().equals(tempNoteEntry.getNid())) {
@@ -160,6 +161,11 @@ public class Storage implements StorageContract {
     public List<NoteModel> getAllNoteModel() {
         List<NoteModel> allNoteList = new ArrayList<>(StorageEntity.ALL_NOTES);
         return allNoteList;
+    }
+
+    @Override
+    public void saveOrder(OrderModel orderModel) {
+        StorageEntity.addEntry(orderModel);
     }
 
     private List<String> updateAllPids() {

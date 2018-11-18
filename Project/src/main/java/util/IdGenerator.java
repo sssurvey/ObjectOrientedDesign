@@ -17,13 +17,14 @@ public class IdGenerator {
     private static final long MIN_VID = 0l;
     private static final long MAX_VID = 99999999l;
 
+    private static final long MIN_OID = 0l;
+    private static final long MAX_OID = 9999999999l;
+
     // TODO: maybe externalize it to a text file
     private static List<Long> generatedPidList = new ArrayList<>();
     private static List<Long> generatedNidList = new ArrayList<>();
     private static List<Long> generatedVidList = new ArrayList<>();
-
-    private IdGenerator() {
-    }
+    private static List<Long> generatedOidList = new ArrayList<>();
 
     public static long generatePid() {
         long pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
@@ -31,24 +32,34 @@ public class IdGenerator {
             // TODO: need better implementation...
             pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
         }
+        generatedOidList.add(pid);
         return pid; // permitive.
     }
 
     public static long generateNid() {
         long nid = ThreadLocalRandom.current().nextLong(MIN_NID, MAX_NID + 1l);
         while (generatedNidList.contains(nid)) {
-            // TODO: need better implementation...
             nid = ThreadLocalRandom.current().nextLong(MIN_NID, MAX_NID + 1l);
         }
+        generatedOidList.add(nid);
         return nid; // permitive.
     }
 
     public static long generateVid() {
         long vid = ThreadLocalRandom.current().nextLong(MIN_VID, MAX_VID + 1l);
         while (generatedVidList.contains(vid)) {
-            // TODO: need better implementation...
             vid = ThreadLocalRandom.current().nextLong(MIN_VID, MAX_VID + 1l);
         }
+        generatedOidList.add(vid);
         return vid; // permitive.
+    }
+
+    public static long generateOid() {
+        long oid = ThreadLocalRandom.current().nextLong(MIN_OID, MAX_OID + 1l);
+        while (generatedOidList.contains(oid)) {
+            oid = ThreadLocalRandom.current().nextLong(MIN_OID, MAX_OID + 1l);
+        }
+        generatedOidList.add(oid);
+        return oid; // permitive.
     }
 }

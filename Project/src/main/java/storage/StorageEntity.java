@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.noteModel.NoteModel;
+import model.orderModel.OrderModel;
 import park.Park;
 
 public class StorageEntity {
     // This is a fake Table in DB
     public static final List<Park> ALL_PARKS = new ArrayList<>();
     public static final List<NoteModel> ALL_NOTES = new ArrayList<>();
+    public static final List<OrderModel> ALL_ORDERS = new ArrayList<>();
 
     public static void addEntry(Park park) {
         ALL_PARKS.add(park);
@@ -45,5 +47,9 @@ public class StorageEntity {
 
     public static NoteModel getNoteModelAtIndex(int index) {
         return ALL_NOTES.get(index);
+    }
+
+    public static void addEntry(OrderModel orderModel) {
+        ALL_ORDERS.add(orderModel);
     }
 }

@@ -1,7 +1,6 @@
 package model.visitorModel;
 
 import util.IdGenerator;
-import util.NumberFormatter;
 
 public class VisitorModel {
 
@@ -10,20 +9,39 @@ public class VisitorModel {
     private String vid;
     private VisitorPaymentInfoModel visitorPaymentInfoModel;
 
+    // TODO: vid check is bad
     public VisitorModel(String name, String email, String card, String nameOnCard, String expirationDate, int zip) {
         this.name = name;
         this.email = email;
-        this.vid = NumberFormatter.formatToEightDigitStringVid(IdGenerator.generateVid());
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
         this.visitorPaymentInfoModel = new VisitorPaymentInfoModel(card, nameOnCard, expirationDate, zip);
     }
 
     public VisitorModel(String name, String email, VisitorPaymentInfoModel visitorPaymentInfoModel) {
+        this.name = name;
+        this.email = email;
+        this.visitorPaymentInfoModel = visitorPaymentInfoModel;
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
     }
 
     public VisitorModel(String name, String email) {
+        this.name = name;
+        this.email = email;
+        this.vid = IdGenerator.generateVidBasdOnEmail(email);
     }
 
-    public VisitorModel() {
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -80,6 +98,18 @@ public class VisitorModel {
         this.visitorPaymentInfoModel.setCard(card);
     }
 
+    public String getExpirationDate() {
+        return visitorPaymentInfoModel.getExpirationDate();
+    }
+
+    public String getNameOnCard() {
+        return visitorPaymentInfoModel.getNameOnCard();
+    }
+
+    public int getZip() {
+        return visitorPaymentInfoModel.getZip();
+    }
+
     private class VisitorPaymentInfoModel {
 
         private String card;
@@ -102,51 +132,30 @@ public class VisitorModel {
         }
 
         /**
-         * @param expirationDate the expirationDate to set
-         */
-        public void setExpirationDate(String expirationDate) {
-            this.expirationDate = expirationDate;
-        }
-
-        /**
-         * @param nameOnCard the nameOnCard to set
-         */
-        public void setNameOnCard(String nameOnCard) {
-            this.nameOnCard = nameOnCard;
-        }
-
-        /**
-         * @param zip the zip to set
-         */
-        public void setZip(int zip) {
-            this.zip = zip;
-        }
-
-        /**
          * @return the card
          */
-        public String getCard() {
+        private String getCard() {
             return card;
         }
 
         /**
          * @return the expirationDate
          */
-        public String getExpirationDate() {
+        private String getExpirationDate() {
             return expirationDate;
         }
 
         /**
          * @return the nameOnCard
          */
-        public String getNameOnCard() {
+        private String getNameOnCard() {
             return nameOnCard;
         }
 
         /**
          * @return the zip
          */
-        public int getZip() {
+        private int getZip() {
             return zip;
         }
     }

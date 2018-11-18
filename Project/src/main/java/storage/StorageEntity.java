@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
+import model.visitorModel.VisitorModel;
 import park.Park;
 
 public class StorageEntity {
@@ -12,6 +13,7 @@ public class StorageEntity {
     public static final List<Park> ALL_PARKS = new ArrayList<>();
     public static final List<NoteModel> ALL_NOTES = new ArrayList<>();
     public static final List<OrderModel> ALL_ORDERS = new ArrayList<>();
+    public static final List<VisitorModel> ALL_VISITORS = new ArrayList<>();
 
     public static void addEntry(Park park) {
         ALL_PARKS.add(park);
@@ -51,6 +53,7 @@ public class StorageEntity {
 
     public static void addEntry(OrderModel orderModel) {
         ALL_ORDERS.add(orderModel);
+        ALL_VISITORS.add(orderModel.getVisitorModel());
     }
 
     public static int getTotalOrderCount() {

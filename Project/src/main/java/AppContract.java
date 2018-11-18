@@ -28,4 +28,7 @@ public interface AppContract {
 
 	public String getOrderByOid(String oid) throws Exception;
 
+	public String getAllVisitor();
+
+	public String getVisitorDetailByVid(String vid) throws Exception;
 }

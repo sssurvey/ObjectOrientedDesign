@@ -208,13 +208,33 @@ public class App {
 
     // GET /orders/{PID} - get 1 order
     @RequestMapping(value = "/orders/{OID}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<String> getAllNotes(@PathVariable(value = "OID") String oid, HttpServletRequest request) {
+    public ResponseEntity<String> getOrderByOid(@PathVariable(value = "OID") String oid, HttpServletRequest request) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(presenter.getOrderByOid(oid));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
                             "The order that related to this OID is not found", request)));
+        }
+    }
+
+    // Get /visitors - get All visitors
+    @RequestMapping(value = "/visitors", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllVisitors(HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllVisitor());
+    }
+
+    // Get /visitors/{VID} - get visitor details via vid
+    @RequestMapping(value = "/visitors/{VID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getVisitorDetailsViaVid(@PathVariable(value = "VID") String vid,
+            HttpServletRequest request) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getVisitorDetailByVid(vid));
+            // TODO: clear the JSON date to match the format
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Visitor ID Not Found", "NOT FOUND",
+                            "The order that related to this VID is not found", request)));
         }
     }
 

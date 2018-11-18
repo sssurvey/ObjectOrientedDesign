@@ -37,4 +37,6 @@ public interface AppContract {
 	public String searchNotes(String key);
 
 	public String searchOrder(String key);
+
+	public String searchVisitor(String key);
 }

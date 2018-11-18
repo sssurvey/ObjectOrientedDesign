@@ -17,6 +17,7 @@ import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
 import model.visitorModel.*;
 import park.Park;
+import search.ParkSearch;
 import storage.Storage;
 import storage.StorageContract;
 
@@ -152,5 +153,14 @@ public class AppPresenter implements AppContract {
             return VisitorModelToJsonConvertor.visitorDetailToJson(visitorModel, allOrders, allNotes);
         }
         throw new Exception("vid not found");
+    }
+
+    @Override
+    public String searchParks(String key) {
+        if (key == null) {
+            return getAllParks();
+        } else {
+            return ParkToJsonConvertor.parkListToJsonLocationInfo(ParkSearch.search(key));
+        }
     }
 }

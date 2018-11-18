@@ -10,6 +10,13 @@ public class NoteModel {
     private String pid;
     private List<NoteEntry> noteList = new ArrayList<>();
 
+    /**
+     * @param noteList the noteList to set
+     */
+    public void setNoteList(List<NoteEntry> noteList) {
+        this.noteList = noteList;
+    }
+
     public NoteModel(Park park) {
         this.pid = park.getPid();
     }

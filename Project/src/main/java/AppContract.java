@@ -33,4 +33,6 @@ public interface AppContract {
 	public String getVisitorDetailByVid(String vid) throws Exception;
 
 	public String searchParks(String key);
+
+	public String searchNotes(String key);
 }

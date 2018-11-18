@@ -244,6 +244,11 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.searchParks(key));
     }
 
+    @RequestMapping(value = "/notes", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchNotes(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchNotes(key));
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

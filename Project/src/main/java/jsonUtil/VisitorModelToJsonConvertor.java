@@ -31,6 +31,11 @@ public class VisitorModelToJsonConvertor {
         return gson.toJson(new VisitorDetail(visitorModel, returnOrderModels, noteLists));
     }
 
+    public static String visitorBasicToJson(VisitorModel visitorModel) {
+        Gson gson = new Gson();
+        return gson.toJson(new VisitorModelBasic(visitorModel));
+    }
+
     private static class VisitorModelBasic {
         private String vid;
         private String name;

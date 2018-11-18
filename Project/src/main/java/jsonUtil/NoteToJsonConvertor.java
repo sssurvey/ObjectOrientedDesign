@@ -23,7 +23,7 @@ public class NoteToJsonConvertor {
         Gson gson = new Gson();
         return gson.toJson(new NoteEntryPidNidReturnModel(noteEntry, pid));
     }
-    
+
     public static String allNoteToJson(List<NoteModel> list) {
         Gson gson = new Gson();
         return gson.toJson(list);

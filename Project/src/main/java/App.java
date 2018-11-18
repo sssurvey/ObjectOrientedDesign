@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import responseCode.BadRequestResponseCode;
@@ -236,6 +237,26 @@ public class App {
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Visitor ID Not Found", "NOT FOUND",
                             "The order that related to this VID is not found", request)));
         }
+    }
+
+    @RequestMapping(value = "/parks", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchPark(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchParks(key));
+    }
+
+    @RequestMapping(value = "/notes", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchNotes(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchNotes(key));
+    }
+
+    @RequestMapping(value = "/orders", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchOrders(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchOrder(key));
+    }
+
+    @RequestMapping(value = "/visitors", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> searchVisitor(@RequestParam(value = "key") String key, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(presenter.searchVisitor(key));
     }
 
     public static void main(String[] args) {

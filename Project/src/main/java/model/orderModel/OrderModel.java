@@ -14,6 +14,7 @@ public class OrderModel {
     private int amount;
     private VehicleModel vehicleModel;
     private VisitorModel visitorModel;
+    private PaymentProcessingStatus paymentProcessingStatus;
 
     public OrderModel(String pid, VehicleModel vehicleModel, VisitorModel visitorModel) {
         this.pid = pid;
@@ -21,6 +22,7 @@ public class OrderModel {
         this.vehicleModel = vehicleModel;
         this.visitorModel = visitorModel;
         this.date = DateHelper.addDateStamp();
+        this.paymentProcessingStatus = new PaymentProcessingStatus();
     }
 
     public OrderModel() {
@@ -74,5 +76,44 @@ public class OrderModel {
      */
     public String getDate() {
         return date;
+    }
+
+    /**
+     * @return the visitorModel
+     */
+    public VisitorModel getVisitorModel() {
+        return visitorModel;
+    }
+
+    /**
+     * @return the paymentProcessingStatus
+     */
+    public PaymentProcessingStatus getPaymentProcessingStatus() {
+        return paymentProcessingStatus;
+    }
+
+    public class PaymentProcessingStatus {
+
+        private String transatctionId;
+        private String date;
+
+        public PaymentProcessingStatus() {
+            this.transatctionId = NumberFormatter.formatToFifTeenDigitStringTid(IdGenerator.generateTid());
+            this.date = DateHelper.addDateStamp();
+        }
+
+        /**
+         * @return the date
+         */
+        public String getDate() {
+            return date;
+        }
+
+        /**
+         * @return the transatctionId
+         */
+        public String getTransatctionId() {
+            return transatctionId;
+        }
     }
 }

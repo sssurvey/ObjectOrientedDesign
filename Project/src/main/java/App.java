@@ -206,6 +206,18 @@ public class App {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllOrder());
     }
 
+    // GET /orders/{PID} - get 1 order
+    @RequestMapping(value = "/orders/{OID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getAllNotes(@PathVariable(value = "OID") String oid, HttpServletRequest request) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(presenter.getOrderByOid(oid));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Note ID Not Found", "NOT FOUND",
+                            "The order that related to this OID is not found", request)));
+        }
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

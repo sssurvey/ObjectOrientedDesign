@@ -9,7 +9,7 @@ public class IdGenerator {
     // to do with the models
 
     private static final long MIN_PID = 0l;
-    private static final long MAX_PID = 999l;
+    private static final long MAX_PID = 99999999l;
 
     private static final long MIN_NID = 0l;
     private static final long MAX_NID = 9999l;
@@ -20,11 +20,15 @@ public class IdGenerator {
     private static final long MIN_OID = 0l;
     private static final long MAX_OID = 9999999999l;
 
+    private static final long MIN_TID = 0l;
+    private static final long MAX_TID = 999999999999999l;
+
     // TODO: maybe externalize it to a text file
     private static List<Long> generatedPidList = new ArrayList<>();
     private static List<Long> generatedNidList = new ArrayList<>();
     private static List<Long> generatedVidList = new ArrayList<>();
     private static List<Long> generatedOidList = new ArrayList<>();
+    private static List<Long> generatedTidList = new ArrayList<>();
 
     public static long generatePid() {
         long pid = ThreadLocalRandom.current().nextLong(MIN_PID, MAX_PID + 1l);
@@ -61,5 +65,14 @@ public class IdGenerator {
         }
         generatedOidList.add(oid);
         return oid; // permitive.
+    }
+
+    public static long generateTid() {
+        long tid = ThreadLocalRandom.current().nextLong(MIN_TID, MAX_TID + 1l);
+        while (generatedTidList.contains(tid)) {
+            tid = ThreadLocalRandom.current().nextLong(MIN_TID, MAX_TID + 1l);
+        }
+        generatedOidList.add(tid);
+        return tid; // permitive.
     }
 }

@@ -122,4 +122,15 @@ public class AppPresenter implements AppContract {
         storageContract.saveOrder(orderModel);
         return OrderToJsonConvertor.orderToJsonOidResponse(orderModel);
     }
+
+    @Override
+    public String getAllOrder() {
+        List<OrderModel> list = storageContract.getAllOrderModel();
+        return OrderToJsonConvertor.convertListOrderModelToOutputJSON(list);
+    }
+
+    @Override
+    public String getOrderByOid(String oid) throws Exception {
+        return OrderToJsonConvertor.orderToJsonDetailed(storageContract.getOrderModelByOid(oid));
+    }
 }

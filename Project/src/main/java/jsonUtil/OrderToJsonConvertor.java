@@ -65,13 +65,12 @@ public class OrderToJsonConvertor {
         private AllOrderReturnModelDetailed(OrderModel orderModel) {
             this.oid = orderModel.getOid();
             this.pid = orderModel.getPid();
-            this.vid = orderModel.getVisitorModel().getVid();
             this.date = orderModel.getDate();
             this.type = orderModel.getVehicleModel().getType();
             this.amount = PriceCalculator.getPrice(orderModel);
             this.paymentProcessingStatus = orderModel.getPaymentProcessingStatus();
-
             this.visitorModel = orderModel.getVisitorModel();
+            this.vid = orderModel.getVisitorModel().getVid();
             String cardNumber = this.visitorModel.getCard();
             this.visitorModel.setCard(NumberFormatter.showLastFourDigit(cardNumber));
         }

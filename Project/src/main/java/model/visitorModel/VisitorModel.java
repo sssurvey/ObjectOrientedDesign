@@ -13,17 +13,20 @@ public class VisitorModel {
     public VisitorModel(String name, String email, String card, String nameOnCard, String expirationDate, int zip) {
         this.name = name;
         this.email = email;
-        this.vid = NumberFormatter.formatToEightDigitStringVid(IdGenerator.generateVid());
+        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
         this.visitorPaymentInfoModel = new VisitorPaymentInfoModel(card, nameOnCard, expirationDate, zip);
     }
 
     public VisitorModel(String name, String email, VisitorPaymentInfoModel visitorPaymentInfoModel) {
+        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
     }
 
     public VisitorModel(String name, String email) {
+        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
     }
 
     public VisitorModel() {
+        this.vid = NumberFormatter.formatToFiveDigitStringVid(IdGenerator.generateVid());
     }
 
     /**

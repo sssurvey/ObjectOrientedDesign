@@ -172,4 +172,4 @@ Then you can view the code complexity report at the build dir under the report, 
 
 ### Challenges:
 
-I have never used springboot before, I consider it a small challenge to get the program running and functioning correctly. In the meantime, wrting unitest for this project is not an easy task too. ALSO, there is not enough time.
+Complete this project under 2 weeks is a challenge... I should've started the project earlier

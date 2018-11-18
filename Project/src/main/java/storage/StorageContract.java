@@ -5,6 +5,7 @@ import java.util.List;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
+import model.visitorModel.VisitorModel;
 import park.Park;
 
 public interface StorageContract {
@@ -42,4 +43,6 @@ public interface StorageContract {
     public List<OrderModel> getAllOrderModel();
 
     public OrderModel getOrderModelByOid(String pid) throws Exception;
+
+    public List<VisitorModel> getAllVisitors();
 }

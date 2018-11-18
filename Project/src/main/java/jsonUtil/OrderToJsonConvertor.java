@@ -59,21 +59,64 @@ public class OrderToJsonConvertor {
         private String date;
         private String type;
         private int amount;
-        private VisitorModel visitorModel;
+        private VisitorModelNoVid visitor;
         private PaymentProcessingStatus paymentProcessingStatus;
 
         private AllOrderReturnModelDetailed(OrderModel orderModel) {
             this.oid = orderModel.getOid();
             this.pid = orderModel.getPid();
-            this.vid = orderModel.getVisitorModel().getVid();
             this.date = orderModel.getDate();
             this.type = orderModel.getVehicleModel().getType();
             this.amount = PriceCalculator.getPrice(orderModel);
             this.paymentProcessingStatus = orderModel.getPaymentProcessingStatus();
+            this.visitor = new VisitorModelNoVid(orderModel.getVisitorModel());
+            this.vid = orderModel.getVisitorModel().getVid();
+            String cardNumber = visitor.getVisitorPaymentModel().getCard();
+            this.visitor.getVisitorPaymentModel().setCard(NumberFormatter.showLastFourDigit(cardNumber));
+        }
 
-            this.visitorModel = orderModel.getVisitorModel();
-            String cardNumber = this.visitorModel.getCard();
-            this.visitorModel.setCard(NumberFormatter.showLastFourDigit(cardNumber));
+        private static class VisitorModelNoVid {
+
+            private VisitorPaymentModel visitorPaymentModel;
+
+            private VisitorModelNoVid(VisitorModel visitorModel) {
+                this.visitorPaymentModel = new VisitorPaymentModel(visitorModel);
+            }
+
+            /**
+             * @return the visitorPaymentModel
+             */
+            private VisitorPaymentModel getVisitorPaymentModel() {
+                return visitorPaymentModel;
+            }
+
+            private static class VisitorPaymentModel {
+                private String card;
+                private String nameOnCard;
+                private String expirationDate;
+                private int zip;
+
+                private VisitorPaymentModel(VisitorModel visitorModel) {
+                    this.card = visitorModel.getCard();
+                    this.nameOnCard = visitorModel.getNameOnCard();
+                    this.expirationDate = visitorModel.getExpirationDate();
+                    this.zip = visitorModel.getZip();
+                }
+
+                /**
+                 * @return the card
+                 */
+                private String getCard() {
+                    return card;
+                }
+
+                /**
+                 * @param card the card to set
+                 */
+                private void setCard(String card) {
+                    this.card = card;
+                }
+            }
         }
     }
 }

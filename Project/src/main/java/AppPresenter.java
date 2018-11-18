@@ -11,6 +11,7 @@ import jsonUtil.OrderToJsonConvertor;
 import jsonUtil.OrderValidator;
 import jsonUtil.ParkToJsonConvertor;
 import jsonUtil.ParkValidator;
+import jsonUtil.VisitorModelToJsonConvertor;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
@@ -132,5 +133,10 @@ public class AppPresenter implements AppContract {
     @Override
     public String getOrderByOid(String oid) throws Exception {
         return OrderToJsonConvertor.orderToJsonDetailed(storageContract.getOrderModelByOid(oid));
+    }
+
+    @Override
+    public String getAllVisitor(){
+        return VisitorModelToJsonConvertor.visitorListToJson(storageContract.getAllVisitors());
     }
 }

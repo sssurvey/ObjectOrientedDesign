@@ -28,4 +28,6 @@ public interface AppContract {
 
 	public String getOrderByOid(String oid) throws Exception;
 
+	public String getAllVisitor();
+
 }

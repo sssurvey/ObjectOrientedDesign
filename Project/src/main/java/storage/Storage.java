@@ -6,6 +6,7 @@ import java.util.List;
 import model.noteModel.NoteEntry;
 import model.noteModel.NoteModel;
 import model.orderModel.OrderModel;
+import model.visitorModel.VisitorModel;
 import park.Park;
 
 public class Storage implements StorageContract {
@@ -182,6 +183,15 @@ public class Storage implements StorageContract {
             }
         }
         throw new Exception("Oid not found");
+    }
+
+    @Override
+    public List<VisitorModel> getAllVisitors() {
+        List<VisitorModel> visitorList = new ArrayList<>();
+        for (OrderModel orderModel : StorageEntity.ALL_ORDERS) {
+            visitorList.add(orderModel.getVisitorModel());
+        }
+        return visitorList;
     }
 
     private List<String> updateAllPids() {

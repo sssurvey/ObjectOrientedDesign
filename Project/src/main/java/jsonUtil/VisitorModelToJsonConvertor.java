@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import jsonUtil.OrderToJsonConvertor.AllOrderReturnModel;
 import model.noteModel.NoteEntry;
 import model.orderModel.OrderModel;
 import model.visitorModel.VisitorModel;
@@ -23,7 +24,11 @@ public class VisitorModelToJsonConvertor {
     public static String visitorDetailToJson(VisitorModel visitorModel, List<OrderModel> orderModelList,
             List<NoteEntry> noteLists) {
         Gson gson = new Gson();
-        return gson.toJson(new VisitorDetail(visitorModel, orderModelList, noteLists));
+        List<AllOrderReturnModel> returnOrderModels = new ArrayList<>();
+        for (OrderModel orderModel : orderModelList) {
+            returnOrderModels.add(new AllOrderReturnModel(orderModel));
+        }
+        return gson.toJson(new VisitorDetail(visitorModel, returnOrderModels, noteLists));
     }
 
     private static class VisitorModelBasic {
@@ -46,10 +51,11 @@ public class VisitorModelToJsonConvertor {
     private static class VisitorDetail {
         private String vid;
         private VisitorModelBasic visitor;
-        private List<OrderModel> orders;
+        private List<AllOrderReturnModel> orders;
         private List<NoteEntry> noteEntries;
 
-        private VisitorDetail(VisitorModel visitorModel, List<OrderModel> orderModels, List<NoteEntry> noteEntries) {
+        private VisitorDetail(VisitorModel visitorModel, List<AllOrderReturnModel> orderModels,
+                List<NoteEntry> noteEntries) {
             this.vid = visitorModel.getVid();
             this.visitor = new VisitorModelBasic(visitorModel.getName(), visitorModel.getEmail());
             this.orders = orderModels;

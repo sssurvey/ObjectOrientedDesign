@@ -12,6 +12,30 @@ public class VehicleModel {
         this.type = type;
     }
 
+    public VehicleModel() {
+    }
+
+    /**
+     * @param plate the plate to set
+     */
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
     /**
      * @return the plate
      */

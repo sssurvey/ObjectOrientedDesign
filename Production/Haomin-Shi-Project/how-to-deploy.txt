@@ -1,0 +1,17 @@
+1. Cd to project dir
+    do this:
+        $ cd ./Project/
+2. Build the project clean
+    do this:
+        $ ./gradlew clean build
+
+3. To RUN the project
+    do this:
+        $ ./gradlew run
+
+4. View aviliable tasks, ie. test, jacoco, metrcs
+    ie:
+        $ ./gradlew tasks
+
+!!!
+MORE details in the Memo

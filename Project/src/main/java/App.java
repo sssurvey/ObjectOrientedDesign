@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import responseCode.NotFoundResponseCode;
 // the main controller for the program /parkpay base
 @RestController
 @EnableAutoConfiguration
+@Import(ControllerTryingOut.class)
 public class App {
 
     private AppContract presenter = new AppPresenter();
@@ -35,10 +37,10 @@ public class App {
     @RequestMapping(value = "/parks", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createPark(@RequestBody String parkJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createPark(parkJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createPark(parkJSON));
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                    .body(ResponseJsonParser.toJson(new BadRequestResponseCode(
                             "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
                             "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
@@ -57,7 +59,7 @@ public class App {
                             "The Park that related to this PID is not found, thus no delete action has been done",
                             request)));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     // Delete Park /parks/{PID}} DELETE - void

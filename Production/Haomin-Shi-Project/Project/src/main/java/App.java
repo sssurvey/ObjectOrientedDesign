@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import responseCode.NotFoundResponseCode;
 // the main controller for the program /parkpay base
 @RestController
 @EnableAutoConfiguration
+@Import(ControllerTryingOut.class)
 public class App {
 
     private AppContract presenter = new AppPresenter();
@@ -35,10 +37,10 @@ public class App {
     @RequestMapping(value = "/parks", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createPark(@RequestBody String parkJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createPark(parkJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createPark(parkJSON));
         } catch (Exception didNotPassValidationException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
+                    .body(ResponseJsonParser.toJson(new BadRequestResponseCode(
                             "http://cs.iit.edu/~virgil/cs445/project/api/problems/data-validation",
                             "Your request data didn't pass validation", "Something is missing in your request",
                             request)));
@@ -57,7 +59,7 @@ public class App {
                             "The Park that related to this PID is not found, thus no delete action has been done",
                             request)));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     // Delete Park /parks/{PID}} DELETE - void
@@ -65,7 +67,7 @@ public class App {
     public ResponseEntity<String> deletePark(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         try {
             presenter.deletePark(pid);
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -102,7 +104,7 @@ public class App {
     public ResponseEntity<String> createNoteAssociateToPark(@PathVariable(value = "PID") String pid,
             @RequestBody String noteJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createNoteAssociateToPark(pid, noteJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createNoteAssociateToPark(pid, noteJSON));
         } catch (EOFException pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -122,7 +124,7 @@ public class App {
     public ResponseEntity<String> getAllNoteAssociteToPark(@PathVariable(value = "PID") String pid,
             HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllNoteAssociateToPark(pid));
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(presenter.getAllNoteAssociateToPark(pid));
         } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -191,7 +193,7 @@ public class App {
     @RequestMapping(value = "/orders", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createOrder(@RequestBody String orderJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createOrder(orderJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createOrder(orderJSON));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
@@ -239,7 +241,7 @@ public class App {
         }
     }
 
-    @RequestMapping(value = "/parks", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/parks", params = { "key" }, method = RequestMethod.GET, produces="application/json")
     public ResponseEntity<String> searchPark(@RequestParam(value = "key") String key, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.searchParks(key));
     }

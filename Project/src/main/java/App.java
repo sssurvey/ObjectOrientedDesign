@@ -67,7 +67,7 @@ public class App {
     public ResponseEntity<String> deletePark(@PathVariable(value = "PID") String pid, HttpServletRequest request) {
         try {
             presenter.deletePark(pid);
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -104,7 +104,7 @@ public class App {
     public ResponseEntity<String> createNoteAssociateToPark(@PathVariable(value = "PID") String pid,
             @RequestBody String noteJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createNoteAssociateToPark(pid, noteJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createNoteAssociateToPark(pid, noteJSON));
         } catch (EOFException pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -124,7 +124,7 @@ public class App {
     public ResponseEntity<String> getAllNoteAssociteToPark(@PathVariable(value = "PID") String pid,
             HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.getAllNoteAssociateToPark(pid));
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(presenter.getAllNoteAssociateToPark(pid));
         } catch (Exception pidNotFoundException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode("Park Pid Not Found", "NOT FOUND",
@@ -193,7 +193,7 @@ public class App {
     @RequestMapping(value = "/orders", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createOrder(@RequestBody String orderJSON, HttpServletRequest request) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(presenter.createOrder(orderJSON));
+            return ResponseEntity.status(HttpStatus.CREATED).body(presenter.createOrder(orderJSON));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ResponseJsonParser.toJson(new NotFoundResponseCode(
@@ -241,7 +241,7 @@ public class App {
         }
     }
 
-    @RequestMapping(value = "/parks", params = { "key" }, method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/parks", params = { "key" }, method = RequestMethod.GET, produces="application/json")
     public ResponseEntity<String> searchPark(@RequestParam(value = "key") String key, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(presenter.searchParks(key));
     }
